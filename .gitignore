@@ -27,3 +27,6 @@ npm-debug.log*
 # tooling config / audit logs (NOT part of website; may contain tokens)
 /.bkit/
 /.claude/
+
+# 추가 온보딩 자료 (병원 내부 — 유출 금지)
+/onboarding2/
