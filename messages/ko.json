@@ -43,6 +43,15 @@
     "kicker": "WHY ONEDAY",
     "title": "외국인 환자가\n원데이치과를 선택하는 이유"
   },
+  "facility": {
+    "kicker": "FACILITY · ONE LAB",
+    "title": "직접 보는 원데이 시설",
+    "subtitle": "강남 3개관과 자체 디지털 기공소(원랩)를 그대로 보여드립니다. 보철물을 원내에서 만들기에 당일 완성이 가능합니다.",
+    "onelabTitle": "자체 디지털 기공소 — 원랩(ONE LAB)",
+    "onelabDesc": "기공물을 외부에 맡기지 않고 원내 기공소에서 직접 제작합니다. 진단·식립·임시보철을 하루에 진행하는 당일 완성의 근거입니다. (개인 상태에 따라 차이가 있을 수 있습니다.)",
+    "onelabBadge": "당일 완성의 근거",
+    "hallsTitle": "강남 3개관"
+  },
   "categories": {
     "kicker": "TREATMENTS",
     "title": "진료 안내",

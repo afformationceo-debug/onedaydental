@@ -9,6 +9,7 @@ import { BadgeCheck } from "lucide-react";
 import { getIcon } from "@/lib/icons";
 import DoctorCard from "@/components/DoctorCard";
 import FinalCta from "@/components/sections/FinalCta";
+import FacilityGallery from "@/components/sections/FacilityGallery";
 import LocationMap from "@/components/LocationMap";
 import { SectionHeader } from "@/components/sections/Section";
 import Reveal from "@/components/Reveal";
@@ -51,9 +52,10 @@ export default async function AboutPage({
       <section className="mt-7 px-5">
         <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-ink-900/10">
           <Image
-            src="/gen-img/about-facility.jpg"
+            src="/facility/hall1/hall1-01.jpg"
             alt={tx(clinic.name, locale)}
             fill
+            priority
             sizes="(max-width: 500px) 100vw, 460px"
             className="object-cover"
           />
@@ -104,6 +106,9 @@ export default async function AboutPage({
           })}
         </div>
       </section>
+
+      {/* Facility gallery (3개관 + 원랩 = 당일완성 근거) */}
+      <FacilityGallery />
 
       {/* Doctors */}
       <section className="mt-10">

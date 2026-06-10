@@ -43,6 +43,15 @@
     "kicker": "WHY ONEDAY",
     "title": "台灣患者為什麼\n都選擇 韓國oneday牙科"
   },
+  "facility": {
+    "kicker": "FACILITY · ONE LAB",
+    "title": "親眼看見 ONEDAY 的設施",
+    "subtitle": "江南3館與自家數位牙技所（ONE LAB）原貌呈現。假牙於院內製作，因此能做到當日完成。",
+    "onelabTitle": "自家數位牙技所 — ONE LAB",
+    "onelabDesc": "不外包技工製作，而是在院內牙技所親自製作。這正是能在一天內完成診斷・植入・臨時假牙的依據，讓您放心。（依個人狀況可能有所差異。）",
+    "onelabBadge": "當日完成的依據",
+    "hallsTitle": "江南3館"
+  },
   "categories": {
     "kicker": "TREATMENTS",
     "title": "診療項目",

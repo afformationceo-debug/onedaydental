@@ -84,6 +84,7 @@ export interface Usp {
   icon: string; // lucide icon name
   title: I18nText;
   desc: I18nText;
+  image?: string; // optional real facility photo (e.g. ONE LAB) — /facility/...
 }
 
 /**
@@ -98,6 +99,8 @@ export interface Branch {
   phone: string;
   services: I18nText; // 이 관에서 제공하는 진료내용
   mapQuery: string; // Google Maps search query (Korean, for accurate pin)
+  image?: string; // representative facility photo for this hall — /facility/...
+  imageAlt?: I18nText; // localized alt text for the facility photo
 }
 
 export interface ClinicData {

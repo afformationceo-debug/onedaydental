@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getClinic } from "@/lib/clinic";
 import { tx } from "@/lib/i18n-text";
@@ -61,6 +62,20 @@ export default async function LocationMap() {
                 key={branch.id}
                 className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-ink-100"
               >
+                {branch.image ? (
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={branch.image}
+                      alt={branch.imageAlt ? tx(branch.imageAlt, locale) : tx(branch.name, locale)}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                    <span className="absolute left-2.5 top-2.5 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-brand-700 backdrop-blur">
+                      {tx(branch.name, locale)}
+                    </span>
+                  </div>
+                ) : null}
                 <div className="overflow-hidden">
                   <iframe
                     src={maps.embed}
