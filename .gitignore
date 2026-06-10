@@ -30,3 +30,14 @@ npm-debug.log*
 
 # 추가 온보딩 자료 (병원 내부 — 유출 금지)
 /onboarding2/
+
+# B&A·시술별 자료(내부)
+/onboarding3/
+
+# 병원 원내자료 (내부 — 유출 금지)
+/원데이 원내자료/
+*.crdownload
+*.tsbuildinfo.claude
+
+# 대용량 zip (원내자료 압축본 등)
+*.zip

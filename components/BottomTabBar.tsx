@@ -32,7 +32,7 @@ export default function BottomTabBar() {
   return (
     <nav
       aria-label="Primary"
-      className="sticky bottom-0 z-40 mt-auto border-t border-ink-100 bg-white/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
+      className="sticky bottom-0 z-40 mt-auto border-t border-ink-100 bg-white/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden"
     >
       <ul className="grid grid-cols-5">
         {TABS.map(({ href, key, Icon, primary }) => {

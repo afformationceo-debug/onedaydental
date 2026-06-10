@@ -27,7 +27,7 @@ export default function FloatingCTA() {
   }, []);
 
   return (
-    <div className="pointer-events-none absolute bottom-20 right-3 z-40 flex flex-col items-end gap-2.5">
+    <div className="pointer-events-none fixed bottom-20 right-3 z-40 flex flex-col items-end gap-2.5 lg:bottom-6 lg:right-6">
       {showTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

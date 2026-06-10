@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { SiLine } from "react-icons/si";
 import { getIcon } from "@/lib/icons";
+import { primaryMessenger } from "@/lib/config";
+import type { Locale } from "@/lib/types";
 import { cn } from "@/lib/cn";
 import Logo from "./Logo";
-import LanguageSwitcher from "./LanguageSwitcher";
 import MessengerButtons from "./MessengerButtons";
 
 interface TreatmentCat {
@@ -19,6 +21,8 @@ interface TreatmentCat {
 
 export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[] }) {
   const t = useTranslations("nav");
+  const locale = useLocale() as Locale;
+  const line = primaryMessenger(locale);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(true); // treatments accordion open by default
@@ -43,6 +47,15 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
     };
   }, [open]);
 
+  // Desktop inline nav (full-width header)
+  const desktopLinks = [
+    { href: "/", key: "home" },
+    { href: "/treatments", key: "treatments" },
+    { href: "/prices", key: "prices" },
+    { href: "/reviews", key: "reviews" },
+    { href: "/about", key: "about" },
+  ] as const;
+
   const directLinks = [
     { href: "/", key: "home" },
     { href: "/about", key: "about" },
@@ -62,13 +75,42 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
           : "bg-gradient-to-b from-surface/95 to-surface/0",
       )}
     >
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="mx-auto flex h-14 max-w-screen-2xl items-center justify-between px-4 lg:h-16 lg:px-8">
         <Link href="/" aria-label="ONEDAY Dental home">
           <Logo className="scale-[0.92] origin-left" />
         </Link>
 
-        <div className="flex items-center gap-1.5">
-          <LanguageSwitcher compact />
+        {/* Desktop inline nav */}
+        <nav className="hidden items-center gap-7 lg:flex">
+          {desktopLinks.map((item) => {
+            const active =
+              item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "text-[14.5px] font-semibold transition",
+                  active ? "text-brand-700" : "text-ink-700 hover:text-brand-600",
+                )}
+              >
+                {t(item.key)}
+              </Link>
+            );
+          })}
+          <a
+            href={line.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#06C755] px-5 py-2.5 text-[14px] font-bold text-white shadow-md transition hover:shadow-lg active:scale-95"
+          >
+            <SiLine className="size-[18px]" />
+            {t("reservation")}
+          </a>
+        </nav>
+
+        {/* Mobile menu toggle */}
+        <div className="flex items-center gap-1.5 lg:hidden">
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label="Menu"
@@ -80,10 +122,10 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
         </div>
       </div>
 
-      {/* Slide-down drawer with working sub-menus */}
+      {/* Slide-down drawer with working sub-menus (mobile only) */}
       <div
         className={cn(
-          "grid overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "grid overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden",
           open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
         )}
       >

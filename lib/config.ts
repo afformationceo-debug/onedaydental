@@ -19,14 +19,6 @@ const LINE: Messenger = {
   color: "#06C755",
 };
 
-/** KR domestic — KakaoTalk (optional; falls back to LINE). */
-const KAKAO: Messenger = {
-  type: "kakao",
-  label: "KakaoTalk",
-  href: process.env.NEXT_PUBLIC_KAKAO_URL || "#",
-  color: "#FAE100",
-};
-
 const INSTAGRAM: Messenger = {
   type: "instagram",
   label: "Instagram",
@@ -38,12 +30,11 @@ const INSTAGRAM: Messenger = {
 
 /**
  * Ordered list of messengers per locale (first = primary CTA).
- * TW target → LINE-first. KR shows Kakao first, then LINE.
+ * TW target → LINE-first, then Instagram.
  * Channels whose href resolves to "#" (env not set) are filtered out at runtime,
  * with LINE kept as a visible placeholder so the CTA never disappears.
  */
 const RAW_BY_LOCALE: Record<Locale, Messenger[]> = {
-  ko: [KAKAO, LINE, INSTAGRAM],
   "zh-TW": [LINE, INSTAGRAM],
 };
 
@@ -54,9 +45,11 @@ function filterConfigured(list: Messenger[]): Messenger[] {
 }
 
 export const messengersByLocale: Record<Locale, Messenger[]> = {
-  ko: filterConfigured(RAW_BY_LOCALE.ko),
   "zh-TW": filterConfigured(RAW_BY_LOCALE["zh-TW"]),
 };
+
+/** Direct LINE channel URL (env-injected). Falls back to "#". Used by every CTA. */
+export const lineUrl: string = LINE.href;
 
 export function primaryMessenger(locale: Locale): Messenger {
   return messengersByLocale[locale][0];
@@ -64,7 +57,6 @@ export function primaryMessenger(locale: Locale): Messenger {
 
 /** Prefill consult message per locale. {treatment} replaced at call site. */
 export const consultPrefill: Record<Locale, string> = {
-  ko: "원데이치과 홈페이지 보고 {treatment} 상담 문의드려요",
   "zh-TW": "我從 ONEDAY 牙醫官網看到，想諮詢 {treatment}",
 };
 

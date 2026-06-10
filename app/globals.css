@@ -59,9 +59,6 @@
     "Microsoft JhengHei", sans-serif;
   --font-display: "Pretendard Variable", Pretendard, system-ui, sans-serif;
 
-  /* App frame */
-  --frame-max: 30rem; /* 480px mobile-app frame on desktop */
-
   /* Radii */
   --radius-xl2: 1.5rem;
 
@@ -80,31 +77,33 @@ html {
 body {
   font-family: var(--font-sans);
   color: var(--color-ink-900);
-  /* Desktop side-rail gradient backdrop behind the centered app frame */
-  background:
-    radial-gradient(120% 80% at 100% 0%, #f3eefb 0%, transparent 55%),
-    radial-gradient(120% 80% at 0% 100%, #faf3e6 0%, transparent 55%),
-    #f1eff7;
+  background: var(--color-surface);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* ----- Mobile-frame-on-desktop core layout ----- */
+/* ----- Full-width responsive shell -----
+   Mobile = single column; desktop = content spans the viewport with
+   per-section centered containers (.container-page). */
 .app-frame {
   position: relative;
   width: 100%;
-  max-width: var(--frame-max);
-  margin-inline: auto;
   min-height: 100dvh;
   background: var(--color-surface);
-  box-shadow: 0 0 0 1px rgba(15, 23, 41, 0.04),
-    0 30px 80px -20px rgba(15, 23, 41, 0.18);
   overflow-x: clip;
 }
 
+/* Section container — centers content & caps width on large screens.
+   Sections opt-in by wrapping their inner content with this class. */
+.container-page {
+  width: 100%;
+  max-width: 80rem; /* screen-xl */
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
 @media (min-width: 1024px) {
-  .app-frame {
-    min-height: calc(100dvh - 0px);
+  .container-page {
+    padding-inline: 2rem;
   }
 }
 

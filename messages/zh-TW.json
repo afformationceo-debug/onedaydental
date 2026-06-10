@@ -134,15 +134,14 @@
   },
   "reservation": {
     "kicker": "BOOK NOW",
-    "title": "只要 1 分鐘，諮詢馬上開始",
-    "subtitle": "用您慣用的 LINE 等通訊軟體，輕鬆免費諮詢、零負擔",
-    "name": "姓名",
-    "contact": "聯絡方式 / LINE ID",
-    "treatment": "感興趣的診療",
-    "message": "諮詢內容",
-    "submit": "申請免費諮詢",
-    "or": "或透過 LINE 直接諮詢",
-    "selectTreatment": "請選擇診療項目"
+    "title": "加 LINE，諮詢馬上開始",
+    "subtitle": "用台灣最常用的 LINE 直接諮詢——免填表、免留電話，1 分鐘就能開始，零負擔。",
+    "submit": "加入 LINE 免費諮詢",
+    "free": "諮詢完全免費",
+    "oneMinute": "只要 1 分鐘",
+    "or": "或透過",
+    "scanQr": "手機掃描加入 LINE",
+    "qrAlt": "韓國oneday牙科 官方 LINE QR Code"
   },
   "trust": {
     "samePrice": "透明公開的價格表",

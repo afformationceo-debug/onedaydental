@@ -20,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const l = hasLocale(routing.locales, locale) ? (locale as Locale) : "ko";
+  const l = hasLocale(routing.locales, locale) ? (locale as Locale) : "zh-TW";
   return {
     metadataBase: new URL(
       process.env.NEXT_PUBLIC_SITE_URL ?? "https://global.oneday-dental.co.kr",

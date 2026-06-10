@@ -13,11 +13,10 @@ import CategoryChips from "@/components/CategoryChips";
 import TreatmentCard from "@/components/TreatmentCard";
 import PriceTable from "@/components/PriceTable";
 import ReviewSlider from "@/components/ReviewSlider";
-import ReservationForm from "@/components/ReservationForm";
+import LineConsult from "@/components/LineConsult";
 import FinalCta from "@/components/sections/FinalCta";
 import { SectionHeader } from "@/components/sections/Section";
 import Reveal from "@/components/Reveal";
-import { tx } from "@/lib/i18n-text";
 
 export default async function HomePage({
   params,
@@ -58,7 +57,7 @@ export default async function HomePage({
           title={t("categories.title")}
           subtitle={t("categories.subtitle")}
         />
-        <div className="mt-6 space-y-4 px-5">
+        <div className="mt-6 grid grid-cols-1 gap-4 px-5 md:grid-cols-2 lg:grid-cols-4">
           {clinic.treatments.slice(0, 4).map((tr, i) => (
             <Reveal key={tr.id} delay={i * 0.04}>
               <TreatmentCard
@@ -70,7 +69,7 @@ export default async function HomePage({
             </Reveal>
           ))}
         </div>
-        <div className="mt-5 px-5">
+        <div className="mx-auto mt-5 max-w-md px-5">
           <Link
             href="/treatments"
             className="flex items-center justify-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 py-3 text-[14px] font-bold text-brand-700 transition hover:bg-brand-100"
@@ -119,12 +118,7 @@ export default async function HomePage({
           subtitle={t("reservation.subtitle")}
         />
         <div className="mt-6">
-          <ReservationForm
-            treatments={clinic.treatments.map((tr) => ({
-              slug: tr.slug,
-              name: tx(tr.name, locale),
-            }))}
-          />
+          <LineConsult placement="home_reservation" />
         </div>
       </section>
 

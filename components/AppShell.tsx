@@ -7,7 +7,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import BottomTabBar from "./BottomTabBar";
 import FloatingCTA from "./FloatingCTA";
-import DesktopSidePanel from "./DesktopSidePanel";
 import PromoBar from "./PromoBar";
 
 export default async function AppShell({ children }: { children: ReactNode }) {
@@ -24,16 +23,13 @@ export default async function AppShell({ children }: { children: ReactNode }) {
   }));
 
   return (
-    <div className="mx-auto flex w-full max-w-[920px] items-stretch justify-center gap-12 lg:px-6">
-      <DesktopSidePanel />
-      <div className="app-frame flex flex-col">
-        <PromoBar />
-        <Header treatmentCats={treatmentCats} />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <BottomTabBar />
-        <FloatingCTA />
-      </div>
+    <div className="app-frame relative flex min-h-dvh flex-col bg-surface">
+      <PromoBar />
+      <Header treatmentCats={treatmentCats} />
+      <main className="mx-auto w-full max-w-screen-2xl flex-1">{children}</main>
+      <Footer />
+      <BottomTabBar />
+      <FloatingCTA />
     </div>
   );
 }

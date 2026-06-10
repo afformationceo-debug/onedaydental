@@ -53,7 +53,7 @@ export default async function TreatmentsPage({
                   {tx(cat.name, locale)}
                 </h2>
               </div>
-              <div className="space-y-4 px-5">
+              <div className="grid grid-cols-1 gap-4 px-5 md:grid-cols-2 lg:grid-cols-3">
                 {items.map((tr, i) => (
                   <Reveal key={tr.id} delay={i * 0.04}>
                     <TreatmentCard
