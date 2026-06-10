@@ -41,3 +41,6 @@ npm-debug.log*
 
 # 대용량 zip (원내자료 압축본 등)
 *.zip
+
+# 티아나 잔여(원데이 무관)
+/tiana*.png

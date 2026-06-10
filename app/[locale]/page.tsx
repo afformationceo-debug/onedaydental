@@ -8,6 +8,7 @@ import TrustBar from "@/components/sections/TrustBar";
 import UspSection from "@/components/sections/UspSection";
 import DoctorAuthority from "@/components/sections/DoctorAuthority";
 import BeforeAfter from "@/components/sections/BeforeAfter";
+import CelebrityStrip from "@/components/sections/CelebrityStrip";
 import HomeFaq from "@/components/sections/HomeFaq";
 import CategoryChips from "@/components/CategoryChips";
 import TreatmentCard from "@/components/TreatmentCard";
@@ -105,6 +106,8 @@ export default async function HomePage({
         <div className="mt-6">
           <ReviewSlider reviews={clinic.reviews} />
         </div>
+        {/* 함께한 분들 — 병원 제공 홍보 사진 (임성훈) */}
+        <CelebrityStrip />
       </section>
 
       {/* 10. FAQ (의료관광 반론 — 당일·통역·동일가·체류일) */}
