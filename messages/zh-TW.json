@@ -1,0 +1,187 @@
+{
+  "promo": "🇹🇼 台灣患者專屬 · 中文翻譯常駐 · 透明公開的價格表",
+  "nav": {
+    "home": "首頁",
+    "about": "醫院介紹",
+    "treatments": "診療項目",
+    "prices": "費用說明",
+    "reviews": "真實心得",
+    "reservation": "預約諮詢",
+    "consult": "立即諮詢"
+  },
+  "tabbar": {
+    "home": "首頁",
+    "treatments": "診療",
+    "reserve": "預約",
+    "reviews": "心得",
+    "consult": "諮詢"
+  },
+  "hero": {
+    "badge": "台灣患者專屬 · 首爾江南植牙・齒列矯正・牙齒貼片 · 國際醫療觀光協力機構",
+    "title": "專為台灣患者打造的韓國植牙",
+    "titleEm": "真正的一日完成。",
+    "subtitle": "專為台灣患者打造的韓國植牙——同一間牙科的江南3個診療館、自家數位牙技所與 T-Scan 咬合分析，大幅減少看診次數。中文翻譯全程常駐，價格表透明公開、無隱藏費用，讓您放心託付。",
+    "ctaPrimary": "免費諮詢只要 1 分鐘",
+    "ctaSecondary": "查看診療與費用",
+    "trustSamePrice": "透明公開的價格表",
+    "stats": [
+      {
+        "value": "0.01mm",
+        "label": "T-Scan 咬合分析精密度"
+      },
+      {
+        "value": "10 分鐘",
+        "label": "每顆植牙植入時間"
+      },
+      {
+        "value": "當日",
+        "label": "診斷・植入・臨時假牙一次完成"
+      }
+    ]
+  },
+  "usp": {
+    "kicker": "WHY ONEDAY",
+    "title": "台灣患者為什麼\n都選擇 韓國oneday牙科"
+  },
+  "categories": {
+    "kicker": "TREATMENTS",
+    "title": "診療項目",
+    "subtitle": "以數位精密診斷規劃的植牙・矯正・美學治療",
+    "viewAll": "查看所有診療",
+    "viewDetail": "了解詳情"
+  },
+  "doctors": {
+    "kicker": "MEDICAL TEAM",
+    "title": "全程負責到底的醫療團隊",
+    "subtitle": "持續鑽研 T-Scan 咬合與植牙的專業醫療團隊",
+    "specialty": "診療領域"
+  },
+  "prices": {
+    "kicker": "TRANSPARENT PRICING",
+    "title": "費用說明",
+    "subtitle": "透明公開的價格表 — 精密檢查後於諮詢中確認",
+    "colTreatment": "診療",
+    "colUnit": "單位",
+    "colPrice": "費用",
+    "inquire": "諮詢費用",
+    "unitMan": "萬韓元",
+    "approx": "約",
+    "note": "表列費用以萬韓元（₩10,000）為單位。NT$ 為依匯率之概略換算，實際支付金額可能不同。美學項目未含稅（VAT 另計）。本院事前透明公開外國患者價格表，現場不加價、無隱藏費用。確切費用將於精密檢查後由 1:1 諮詢中為您確認。",
+    "samePrice": "明確報價・現場不加價・無隱藏費用"
+  },
+  "reviews": {
+    "kicker": "REAL STORIES",
+    "title": "與 韓國oneday牙科 同行的人們",
+    "subtitle": "與明星同框的時刻，以及真實患者的故事",
+    "watchMore": "前往觀看",
+    "celebrityNote": "眾多明星與真實患者的同行紀錄",
+    "disclaimer": "所示案例僅用於資訊說明，療程效果因個人口腔狀況而有所差異。",
+    "country": {
+      "zh-TW": "台灣",
+      "kr": "韓國"
+    }
+  },
+  "trustBar": {
+    "sameday": "致力當日完成",
+    "interpreter": "中文翻譯常駐",
+    "samePrice": "透明公開的價格表",
+    "lab": "自家數位牙技所"
+  },
+  "authority": {
+    "kicker": "CHIEF DOCTOR",
+    "title": "植牙18年，以數據說話的咬合",
+    "subtitle": "持續鑽研 T-Scan 數位咬合與植牙的院長",
+    "more": "查看完整醫療團隊"
+  },
+  "beforeAfter": {
+    "kicker": "BEFORE & AFTER",
+    "title": "治療前後案例",
+    "subtitle": "我們正在準備真實的治療前後案例",
+    "preparing": "案例準備中",
+    "note": "案例僅用於資訊說明，療程效果因個人口腔狀況而有所差異。",
+    "cta": "諮詢我的案例"
+  },
+  "faq": {
+    "kicker": "FAQ",
+    "title": "常見問題",
+    "items": [
+      {
+        "q": "植牙真的可以在一天內完成嗎？",
+        "a": "我們透過自家數位牙技所當日製作臨時假牙，致力於在一次看診內完成診斷・植入・臨時假牙。但會依個人牙床骨狀況與骨質有所不同，將於精密診斷後為您說明。"
+      },
+      {
+        "q": "可以用中文諮詢與看診嗎？",
+        "a": "可以。本院中文翻譯常駐，並提供英文・日文諮詢。從預約到看診與術後照護，皆可在毫無語言隔閡的情況下進行。"
+      },
+      {
+        "q": "外國人的費用會比較貴嗎？",
+        "a": "本院事前透明公開外國患者專屬價格表，現場不會加價、也沒有任何被當凱子削的隱藏費用。確切費用將於精密檢查後，由1:1諮詢中為您確認。"
+      },
+      {
+        "q": "從台灣過去需要停留幾天呢？",
+        "a": "依療程種類與個案而有所不同。許多治療致力於當日完成，但植牙最終假牙等可能需要再次回診，諮詢時將配合您的行程為您安排。"
+      }
+    ]
+  },
+  "reservation": {
+    "kicker": "BOOK NOW",
+    "title": "只要 1 分鐘，諮詢馬上開始",
+    "subtitle": "用您慣用的 LINE 等通訊軟體，輕鬆免費諮詢、零負擔",
+    "name": "姓名",
+    "contact": "聯絡方式 / LINE ID",
+    "treatment": "感興趣的診療",
+    "message": "諮詢內容",
+    "submit": "申請免費諮詢",
+    "or": "或透過 LINE 直接諮詢",
+    "selectTreatment": "請選擇診療項目"
+  },
+  "trust": {
+    "samePrice": "透明公開的價格表",
+    "interpreter": "中文翻譯常駐",
+    "registered": "國際醫療觀光協力機構",
+    "guarantee": "致力當日完成"
+  },
+  "finalCta": {
+    "title": "今天，就開始一日完成的治療",
+    "subtitle": "諮詢完全免費。現在只要 1 分鐘就能開始。",
+    "button": "立即開始免費諮詢"
+  },
+  "cta": {
+    "floating": "立即諮詢",
+    "consultAbout": "諮詢 {name}"
+  },
+  "footer": {
+    "clinic": "韓國oneday牙科",
+    "rights": "© 2026 韓國oneday牙科. 版權所有 All rights reserved.",
+    "address": "地址",
+    "hours": "看診時間",
+    "contact": "聯絡我們",
+    "disclaimer": "本網站之醫療資訊僅為一般說明，不能取代專業醫學診斷。療程效果因個人口腔狀況而異，植牙等手術可能伴隨疼痛、腫脹、感染等不良反應。"
+  },
+  "common": {
+    "loading": "載入中...",
+    "backHome": "返回首頁",
+    "minutes": "分鐘",
+    "recovery": "恢復",
+    "duration": "所需時間"
+  },
+  "notFound": {
+    "title": "找不到頁面",
+    "home": "返回首頁"
+  },
+  "location": {
+    "kicker": "LOCATION",
+    "title": "交通方式",
+    "subtitle": "同一間牙科（韓國oneday牙科）的3個診療館 — 集中於江南，遠道而來也方便尋找",
+    "viewMap": "在地圖上查看",
+    "subway": "新論峴站周邊 — 植牙1・2館、矯正・美白3館",
+    "airport": "從仁川機場搭乘機場快線＋地鐵前往新論峴站",
+    "branchesTitle": "3館導覽",
+    "servicesLabel": "診療內容",
+    "callLabel": "電話諮詢",
+    "sameClinicNote": "1・2・3館皆隸屬同一間韓國oneday牙科（並非不同醫院）"
+  },
+  "treatments": {
+    "faqTitle": "常見問題"
+  }
+}

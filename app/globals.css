@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ONEDAY Dental — Design Tokens (single source of truth)
+   Brand concept: premium clinical trust + "放心(安心)" calm.
+   Benchmark (yttsd.com): luxury white + gold / soft-lilac accents.
+   Swap --brand-* here to re-skin the entire site.
+   ============================================================ */
+@theme {
+  /* Brand — soft lilac / violet (淡紫), premium-clinical & calming */
+  --color-brand-50: #f6f4fb;
+  --color-brand-100: #ece7f7;
+  --color-brand-200: #dad1ef;
+  --color-brand-300: #c0afe2;
+  --color-brand-400: #a288d1;
+  --color-brand-500: #8867bf;
+  --color-brand-600: #714fa6;
+  --color-brand-700: #5d4087;
+  --color-brand-800: #4d376e;
+  --color-brand-900: #40305a;
+  --color-brand-950: #2a1e3d;
+
+  /* Clay — warm champagne-gold accent for CTAs / emphasis (impact) */
+  --color-clay-50: #fdf8ee;
+  --color-clay-100: #f9eed4;
+  --color-clay-200: #f1d9a6;
+  --color-clay-300: #e8c074;
+  --color-clay-400: #dca94c;
+  --color-clay-500: #c8902f;
+  --color-clay-600: #aa7424;
+  --color-clay-700: #885a20;
+
+  /* Ink — cool neutral charcoal (headlines, trust) */
+  --color-ink-50: #f5f5f8;
+  --color-ink-100: #e8e7ee;
+  --color-ink-200: #d3d1de;
+  --color-ink-300: #aeabbf;
+  --color-ink-400: #87839b;
+  --color-ink-500: #635f77;
+  --color-ink-600: #4c485d;
+  --color-ink-700: #3a3747;
+  --color-ink-800: #282632;
+  --color-ink-900: #1b1a22;
+  --color-ink-950: #100f15;
+
+  /* Gold — premium trust accents (badges, ratings) */
+  --color-gold-400: #e7c277;
+  --color-gold-500: #d4a64a;
+  --color-gold-600: #b78534;
+
+  /* Surfaces — clean cool white */
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f6fb;
+  --color-surface-muted: #efedf6;
+
+  /* Fonts */
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, -apple-system,
+    "Segoe UI", "Hiragino Sans", "Noto Sans JP", "Noto Sans TC",
+    "Microsoft JhengHei", sans-serif;
+  --font-display: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+
+  /* App frame */
+  --frame-max: 30rem; /* 480px mobile-app frame on desktop */
+
+  /* Radii */
+  --radius-xl2: 1.5rem;
+
+  /* Easing */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+  /* Desktop side-rail gradient backdrop behind the centered app frame */
+  background:
+    radial-gradient(120% 80% at 100% 0%, #f3eefb 0%, transparent 55%),
+    radial-gradient(120% 80% at 0% 100%, #faf3e6 0%, transparent 55%),
+    #f1eff7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ----- Mobile-frame-on-desktop core layout ----- */
+.app-frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--frame-max);
+  margin-inline: auto;
+  min-height: 100dvh;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 1px rgba(15, 23, 41, 0.04),
+    0 30px 80px -20px rgba(15, 23, 41, 0.18);
+  overflow-x: clip;
+}
+
+@media (min-width: 1024px) {
+  .app-frame {
+    min-height: calc(100dvh - 0px);
+  }
+}
+
+/* Utility: hide native scrollbar on horizontal sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Section heading kicker */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-600);
+}
+
+/* Grain/texture overlay helper for premium feel */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Robust entrance animation — content is ALWAYS visible (fill: both ends at opacity 1),
+   no JS dependency, SEO/no-JS safe, degrades gracefully under reduced-motion. */
+@keyframes reveal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-rise {
+  animation: reveal-rise 0.65s var(--ease-out-soft) both;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-rise {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

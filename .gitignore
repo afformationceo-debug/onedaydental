@@ -1,0 +1,29 @@
+/node_modules
+/.next
+/out
+/build
+*.tsbuildinfo
+next-env.d.ts
+.env
+.env*.local
+.DS_Store
+/database/raw_scrape.json
+/database/_img_urls.txt
+npm-debug.log*
+
+# 병원 내부자료 / 스크래핑 원본 (공개 repo 유출 금지)
+/onboarding/
+/database/clinic.raw.json
+/database/pricing-raw.md
+/scrape_tmp/
+
+# verification artifacts
+/.playwright-mcp/
+/*.jpeg
+/en-*.jpeg
+/ja-*.jpeg
+/prod-*.jpeg
+
+# tooling config / audit logs (NOT part of website; may contain tokens)
+/.bkit/
+/.claude/

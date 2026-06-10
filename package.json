@@ -1,0 +1,31 @@
+{
+  "name": "oneday-dental-global",
+  "version": "1.0.0",
+  "private": true,
+  "description": "원데이치과 — global dental-tourism landing (ko/zh-TW · 대만 타겟)",
+  "scripts": {
+    "dev": "next dev -p 4318",
+    "build": "next build",
+    "start": "next start -p 4318",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.544.0",
+    "next": "15.5.4",
+    "next-intl": "^4.3.4",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "react-icons": "^5.5.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2"
+  }
+}
