@@ -1,33 +1,38 @@
 import { getTranslations } from "next-intl/server";
 import { CalendarCheck, Languages, BadgePercent, FlaskConical } from "lucide-react";
 
-/** Compact trust-badge strip right under the hero (放心 anchor). */
+/** Trust strip under the hero — sharp data-row style (放心 anchor). */
 export default async function TrustBar() {
   const t = await getTranslations("trustBar");
   const items = [
-    { Icon: CalendarCheck, label: t("sameday") },
-    { Icon: Languages, label: t("interpreter") },
-    { Icon: BadgePercent, label: t("samePrice") },
-    { Icon: FlaskConical, label: t("lab") },
+    { Icon: CalendarCheck, label: t("sameday"), no: "01" },
+    { Icon: Languages, label: t("interpreter"), no: "02" },
+    { Icon: BadgePercent, label: t("samePrice"), no: "03" },
+    { Icon: FlaskConical, label: t("lab"), no: "04" },
   ];
 
   return (
-    <section className="px-5 pt-8">
-      <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-        {items.map(({ Icon, label }, i) => (
-          <li
-            key={i}
-            className="flex items-center gap-2 rounded-2xl border border-brand-100 bg-surface-soft px-3 py-2.5"
+    <section className="relative z-10 -mt-px border-y border-ink-100 bg-surface">
+      <div className="mx-auto grid max-w-screen-2xl grid-cols-2 divide-x divide-y divide-ink-100 sm:grid-cols-4 sm:divide-y-0 lg:px-6">
+        {items.map(({ Icon, label, no }) => (
+          <div
+            key={no}
+            className="group flex items-center gap-3 px-4 py-4 transition hover:bg-surface-soft lg:px-6 lg:py-5"
           >
-            <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-white text-brand-600 shadow-sm ring-1 ring-brand-100">
-              <Icon className="size-4" strokeWidth={2.3} />
+            <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-brand-900 text-mint-400 transition group-hover:scale-105">
+              <Icon className="size-[18px]" strokeWidth={2.2} />
             </span>
-            <span className="text-[11.5px] font-bold leading-tight text-ink-700">
-              {label}
-            </span>
-          </li>
+            <div className="min-w-0">
+              <span className="font-mono text-[10px] font-bold tracking-widest text-mint-600">
+                {no}
+              </span>
+              <p className="truncate text-[12.5px] font-bold leading-tight text-ink-800">
+                {label}
+              </p>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }

@@ -55,77 +55,96 @@ export default async function FacilityGallery() {
   const tr = (s: Shot) => s.alt[locale] ?? s.alt.ko;
 
   return (
-    <section className="py-11">
-      <SectionHeader kicker={t("kicker")} title={t("title")} subtitle={t("subtitle")} />
+    <section className="py-14 lg:py-20">
+      <div className="mx-auto max-w-screen-2xl lg:px-6">
+        <SectionHeader kicker={t("kicker")} title={t("title")} subtitle={t("subtitle")} />
 
-      {/* ONE LAB feature — trust anchor */}
-      <div className="mt-6 px-5">
-        <Reveal>
-          <div className="overflow-hidden rounded-3xl bg-white shadow-lg shadow-ink-900/10 ring-1 ring-ink-100">
-            <div className="relative aspect-[16/10] w-full overflow-hidden">
-              <Image
-                src={ONELAB[0].src}
-                alt={tr(ONELAB[0])}
-                fill
-                priority
-                sizes="(max-width: 768px) 100vw, 720px"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/75 via-ink-950/10 to-transparent" />
-              <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1.5 text-[11px] font-bold text-white shadow-md">
-                <CalendarCheck className="size-3.5" strokeWidth={2.4} />
-                {t("onelabBadge")}
-              </span>
-              <div className="absolute inset-x-0 bottom-0 p-4">
-                <h3 className="text-[16px] font-extrabold text-white">{t("onelabTitle")}</h3>
-                <p className="mt-1 text-[12.5px] leading-relaxed text-white/85">{t("onelabDesc")}</p>
+        {/* ONE LAB feature — trust anchor (compact, navy framed) */}
+        <div className="mt-8 px-5 lg:px-0">
+          <Reveal>
+            <div className="grid overflow-hidden rounded-xl border border-ink-100 bg-surface lg:grid-cols-[1.4fr_1fr]">
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-brand-950 lg:aspect-auto lg:min-h-[280px]">
+                <Image
+                  src={ONELAB[0].src}
+                  alt={tr(ONELAB[0])}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 560px"
+                  className="object-cover opacity-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-950/85 via-brand-950/10 to-transparent" />
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-md bg-mint-400 px-3 py-1.5 text-[11px] font-bold text-brand-950 shadow-md">
+                  <CalendarCheck className="size-3.5" strokeWidth={2.4} />
+                  {t("onelabBadge")}
+                </span>
+                <div className="absolute inset-x-0 bottom-0 p-4">
+                  <h3 className="font-display text-[17px] font-bold text-white">
+                    {t("onelabTitle")}
+                  </h3>
+                  <p className="mt-1 text-[12.5px] leading-relaxed text-ink-200">
+                    {t("onelabDesc")}
+                  </p>
+                </div>
+              </div>
+
+              {/* secondary ONE LAB strip */}
+              <div className="grid grid-cols-2 gap-1 p-1 lg:grid-cols-1 lg:grid-rows-2">
+                {ONELAB.slice(1).map((shot) => (
+                  <div
+                    key={shot.src}
+                    className="relative aspect-[4/3] overflow-hidden rounded-lg lg:aspect-auto"
+                  >
+                    <Image
+                      src={shot.src}
+                      alt={tr(shot)}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 280px"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* secondary ONE LAB strip */}
-            <div className="grid grid-cols-2 gap-1 p-1">
-              {ONELAB.slice(1).map((shot) => (
-                <div key={shot.src} className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                  <Image
-                    src={shot.src}
-                    alt={tr(shot)}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 360px"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      </div>
-
-      {/* 3개관 시설 갤러리 — bento */}
-      <div className="mt-6 px-5">
-        <div className="mb-3 flex items-center gap-2">
-          <Sparkles className="size-4 text-brand-500" />
-          <h3 className="text-[15px] font-extrabold text-ink-900">{t("hallsTitle")}</h3>
+          </Reveal>
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          {HALLS.map((shot, i) => (
-            <Reveal key={shot.src} delay={i * 0.04} className={i === 0 ? "col-span-2" : ""}>
-              <figure className="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-ink-100">
-                <div className={`relative w-full overflow-hidden ${i === 0 ? "aspect-[16/9]" : "aspect-[4/3]"}`}>
-                  <Image
-                    src={shot.src}
-                    alt={tr(shot)}
-                    fill
-                    sizes={i === 0 ? "(max-width: 768px) 100vw, 720px" : "(max-width: 768px) 50vw, 360px"}
-                    className="object-cover transition duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink-900/55 to-transparent opacity-0 transition group-hover:opacity-100" />
-                </div>
-                <figcaption className="absolute inset-x-0 bottom-0 translate-y-1 p-3 text-[11.5px] font-semibold text-white opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
-                  {tr(shot)}
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+
+        {/* 3개관 시설 갤러리 — compact grid */}
+        <div className="mt-8 px-5 lg:px-0">
+          <div className="mb-4 flex items-center gap-2">
+            <Sparkles className="size-4 text-mint-500" />
+            <h3 className="font-display text-[16px] font-bold text-ink-900">
+              {t("hallsTitle")}
+            </h3>
+          </div>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {HALLS.map((shot, i) => (
+              <Reveal key={shot.src} delay={i * 0.04} className={i === 0 ? "col-span-2" : ""}>
+                <figure className="group relative overflow-hidden rounded-xl border border-ink-100">
+                  <div
+                    className={`relative w-full overflow-hidden ${
+                      i === 0 ? "aspect-[16/9]" : "aspect-[4/3]"
+                    }`}
+                  >
+                    <Image
+                      src={shot.src}
+                      alt={tr(shot)}
+                      fill
+                      sizes={
+                        i === 0
+                          ? "(max-width: 1024px) 100vw, 480px"
+                          : "(max-width: 1024px) 50vw, 280px"
+                      }
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-brand-950/70 to-transparent opacity-0 transition group-hover:opacity-100" />
+                  </div>
+                  <figcaption className="absolute inset-x-0 bottom-0 translate-y-1 p-3 text-[11.5px] font-semibold text-white opacity-0 transition group-hover:translate-y-0 group-hover:opacity-100">
+                    {tr(shot)}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

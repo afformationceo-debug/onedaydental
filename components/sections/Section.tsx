@@ -14,12 +14,21 @@ export function SectionHeader({
 }) {
   return (
     <div className={cn("px-5", center && "text-center")}>
-      {kicker && <span className="kicker">{kicker}</span>}
-      <h2 className="mt-2 text-[1.6rem] font-extrabold leading-tight tracking-tight text-ink-900">
+      {kicker && (
+        <span className={cn("kicker", center && "justify-center")}>{kicker}</span>
+      )}
+      <h2 className="mt-3 font-display text-[clamp(1.55rem,4.5vw,2.4rem)] font-bold leading-[1.12] tracking-tight text-ink-900">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-2 text-[15px] leading-relaxed text-ink-500">{subtitle}</p>
+        <p
+          className={cn(
+            "mt-3 max-w-2xl text-[14.5px] leading-relaxed text-ink-500 lg:text-[15.5px]",
+            center && "mx-auto",
+          )}
+        >
+          {subtitle}
+        </p>
       )}
     </div>
   );

@@ -29,34 +29,36 @@ export default async function ReviewsPage({
   const clinic = getClinic();
 
   return (
-    <div className="pb-8 pt-6">
+    <div className="mx-auto max-w-screen-2xl pb-12 pt-10 lg:px-6">
       <SectionHeader
         kicker={t("reviews.kicker")}
         title={t("reviews.title")}
         subtitle={t("reviews.subtitle")}
       />
 
-      <div className="mx-5 mt-5 flex items-center gap-3 rounded-2xl bg-gradient-to-br from-brand-50 to-surface-soft p-4 ring-1 ring-brand-100">
-        <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-white text-gold-600 shadow-sm ring-1 ring-gold-500/20">
+      <div className="mx-5 mt-6 flex items-center gap-3 rounded-lg border border-mint-400/40 bg-mint-400/8 p-4 lg:mx-0">
+        <span className="grid size-11 shrink-0 place-items-center rounded-md bg-brand-900 text-mint-400">
           <Sparkles className="size-5" strokeWidth={2.2} />
         </span>
         <div>
-          <p className="text-[14px] font-extrabold text-ink-900">
+          <p className="text-[14px] font-bold text-ink-900">
             {t("reviews.celebrityNote")}
           </p>
-          <p className="mt-0.5 text-[12px] text-ink-500">{clinic.reviews.length} stories</p>
+          <p className="mt-0.5 font-mono text-[12px] text-ink-500">
+            {clinic.reviews.length} stories
+          </p>
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-7">
         <ReviewSlider reviews={clinic.reviews} />
       </div>
 
-      <p className="mx-5 mt-5 text-[11.5px] leading-relaxed text-ink-400">
+      <p className="mx-5 mt-5 text-[11.5px] leading-relaxed text-ink-400 lg:mx-0">
         {t("reviews.disclaimer")}
       </p>
 
-      <div className="mx-5 mt-8 flex justify-center">
+      <div className="mx-5 mt-8 flex justify-center lg:mx-0">
         <MessengerButtons placement="reviews_cta" variant="row" />
       </div>
     </div>

@@ -26,20 +26,23 @@ export default async function PricesPage({
   const t = await getTranslations();
 
   return (
-    <div className="pb-8 pt-6">
+    <div className="mx-auto max-w-screen-2xl pb-12 pt-10 lg:px-6">
       <SectionHeader
         kicker={t("prices.kicker")}
         title={t("prices.title")}
         subtitle={t("prices.subtitle")}
       />
-      <div className="mt-6">
+      <div className="mt-8">
         <PriceTable />
       </div>
-      <div className="mx-5 mt-8 rounded-3xl bg-gradient-to-br from-brand-500 to-brand-700 p-5 text-center text-white shadow-lg shadow-brand-500/30">
-        <p className="text-[15px] font-extrabold">{t("reservation.title")}</p>
-        <p className="mt-1 text-[12.5px] text-white/80">{t("reservation.subtitle")}</p>
-        <div className="mt-4 flex justify-center">
-          <MessengerButtons placement="prices_cta" variant="row" />
+      <div className="tech-glow relative mx-5 mt-10 overflow-hidden rounded-xl border border-brand-800 bg-brand-950 p-6 text-center text-white lg:mx-10">
+        <div className="tech-grid absolute inset-0 opacity-40" />
+        <div className="relative">
+          <p className="font-display text-[16px] font-bold">{t("reservation.title")}</p>
+          <p className="mt-1 text-[12.5px] text-ink-200">{t("reservation.subtitle")}</p>
+          <div className="mt-4 flex justify-center">
+            <MessengerButtons placement="prices_cta" variant="row" />
+          </div>
         </div>
       </div>
     </div>

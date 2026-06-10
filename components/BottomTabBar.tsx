@@ -45,7 +45,7 @@ export default function BottomTabBar() {
                   className="flex flex-col items-center gap-1 pb-1.5 pt-2"
                   aria-label={t(key)}
                 >
-                  <span className="-mt-5 grid size-12 place-items-center rounded-2xl bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-lg shadow-brand-500/30 ring-4 ring-white transition active:scale-95">
+                  <span className="-mt-5 grid size-12 place-items-center rounded-xl bg-brand-900 text-mint-400 shadow-lg shadow-brand-900/30 ring-4 ring-white transition active:scale-95">
                     <Icon className="size-5" strokeWidth={2.4} />
                   </span>
                   <span className="text-[10px] font-bold text-brand-700">{t(key)}</span>

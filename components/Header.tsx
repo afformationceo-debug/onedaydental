@@ -221,7 +221,7 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
                       className={cn(
                         "flex items-center justify-between rounded-xl px-3 py-3 text-[15px] font-semibold transition",
                         isCta
-                          ? "mt-1 justify-center bg-gradient-to-r from-clay-500 to-clay-600 text-white shadow-md shadow-clay-500/30"
+                          ? "mt-1 justify-center bg-brand-900 text-mint-400 shadow-md shadow-brand-900/30"
                           : active
                             ? "bg-brand-50 text-brand-700"
                             : "text-ink-800 hover:bg-surface-soft",

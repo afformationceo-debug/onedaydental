@@ -42,7 +42,7 @@ export default function LineConsult({
 
   return (
     <div className="mx-auto w-full max-w-3xl px-5">
-      <div className="overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#06C755] to-[#04a948] p-6 text-white shadow-xl shadow-[#06C755]/25 sm:p-8">
+      <div className="overflow-hidden rounded-xl bg-gradient-to-br from-[#06C755] to-[#04a948] p-6 text-white shadow-xl shadow-[#06C755]/25 sm:p-8">
         <div className={cn("grid items-center gap-6", !compact && "sm:grid-cols-[1fr_auto]")}>
           {/* Copy + primary CTA */}
           <div>
@@ -50,7 +50,7 @@ export default function LineConsult({
               <SiLine className="size-3.5" />
               LINE
             </span>
-            <h3 className="mt-3 text-[1.45rem] font-extrabold leading-tight tracking-tight">
+            <h3 className="mt-3 font-display text-[1.45rem] font-bold leading-tight tracking-tight">
               {t("title")}
             </h3>
             <p className="mt-2 text-[13.5px] leading-relaxed text-white/85">
@@ -73,7 +73,7 @@ export default function LineConsult({
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackConsultClick({ channel: "line", treatment, locale, placement })}
-              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-2xl bg-white py-4 text-[16px] font-extrabold text-[#06C755] shadow-lg transition hover:shadow-xl active:scale-[0.98] sm:w-auto sm:px-8"
+              className="mt-5 inline-flex w-full items-center justify-center gap-2.5 rounded-lg bg-white py-4 text-[16px] font-extrabold text-[#06C755] shadow-lg transition hover:shadow-xl active:scale-[0.98] sm:w-auto sm:px-8"
             >
               <SiLine className="size-6" />
               {t("submit")}

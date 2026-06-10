@@ -91,16 +91,17 @@ export default async function PriceTable() {
   }
 
   return (
-    <div className="px-5">
-      <div className="mb-4 flex items-center gap-2 rounded-2xl bg-gold-500/12 px-4 py-3 ring-1 ring-gold-500/25">
-        <BadgePercent className="size-5 shrink-0 text-gold-600" />
+    <div className="mx-auto max-w-screen-2xl px-5 lg:px-10">
+      <div className="mb-5 flex items-center gap-2.5 rounded-lg border border-mint-400/40 bg-mint-400/8 px-4 py-3">
+        <BadgePercent className="size-5 shrink-0 text-mint-600" />
         <p className="text-[13px] font-bold text-ink-800">{t("samePrice")}</p>
       </div>
 
-      <div className="overflow-hidden rounded-3xl ring-1 ring-ink-100">
+      <div className="overflow-hidden rounded-xl border border-ink-100">
         {[...groups.entries()].map(([cat, items]) => (
           <div key={cat}>
-            <div className="bg-brand-600 px-4 py-2.5 text-[12px] font-extrabold tracking-wide text-white">
+            <div className="flex items-center gap-2 bg-brand-900 px-4 py-3 font-display text-[13px] font-bold tracking-wide text-white">
+              <span className="size-1.5 rounded-full bg-mint-400" />
               {cat}
             </div>
             <table className="w-full">

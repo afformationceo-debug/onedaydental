@@ -22,50 +22,72 @@ export default async function DoctorAuthority() {
   const careers = lead.career.slice(0, 5);
 
   return (
-    <section className="bg-gradient-to-b from-surface to-surface-soft py-11">
-      <SectionHeader kicker={t("kicker")} title={t("title")} subtitle={t("subtitle")} />
+    <section className="bg-surface-soft py-14 lg:py-20">
+      <div className="mx-auto max-w-screen-2xl lg:px-6">
+        <SectionHeader kicker={t("kicker")} title={t("title")} subtitle={t("subtitle")} />
 
-      <div className="mt-6 px-5">
-        <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-md ring-1 ring-ink-100">
-          <div className="flex gap-4 p-5">
-            <div className="relative size-28 shrink-0 overflow-hidden rounded-2xl ring-1 ring-ink-100">
+        <div className="mt-8 px-5 lg:px-0">
+          <div className="bracket grid overflow-hidden rounded-xl border border-ink-100 bg-surface lg:grid-cols-[300px_1fr]">
+            {/* Photo column — navy framed, instrument feel */}
+            <div className="relative aspect-[4/3] bg-brand-950 sm:aspect-[16/9] lg:aspect-auto lg:min-h-full">
               {lead.photo ? (
                 <Image
                   src={lead.photo}
                   alt={name}
                   fill
-                  sizes="112px"
-                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 100vw, 300px"
+                  className="object-cover object-top opacity-90"
                 />
               ) : (
-                <div className="grid h-full w-full place-items-center bg-brand-100 text-brand-600">
-                  <Stethoscope className="size-8" />
+                <div className="grid h-full w-full place-items-center text-mint-400">
+                  <Stethoscope className="size-10" />
                 </div>
               )}
+              <div className="tech-grid absolute inset-0 opacity-30" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-950 to-transparent p-5 lg:hidden">
+                <h3 className="font-display text-[20px] font-bold text-white">{name}</h3>
+                <p className="text-[13px] font-bold text-mint-400">{tx(lead.title, locale)}</p>
+              </div>
             </div>
-            <div className="min-w-0 flex-1">
-              <h3 className="text-[18px] font-extrabold leading-tight text-ink-900">{name}</h3>
-              <p className="text-[12.5px] font-bold text-brand-600">{tx(lead.title, locale)}</p>
-              <p className="mt-2 text-[12px] leading-relaxed text-ink-500">
+
+            {/* Bio column */}
+            <div className="p-6 lg:p-8">
+              <div className="hidden lg:block">
+                <h3 className="font-display text-[24px] font-bold leading-tight text-ink-900">
+                  {name}
+                </h3>
+                <p className="mt-0.5 text-[14px] font-bold text-mint-600">
+                  {tx(lead.title, locale)}
+                </p>
+              </div>
+              <p className="text-[13px] leading-relaxed text-ink-500 lg:mt-3">
                 {tx(lead.specialty, locale)}
               </p>
+
+              <ul className="mt-5 grid gap-2.5 border-t border-ink-100 pt-5 sm:grid-cols-2">
+                {careers.map((c, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-2 text-[12.5px] leading-relaxed text-ink-700"
+                  >
+                    <BadgeCheck
+                      className="mt-0.5 size-4 shrink-0 text-mint-500"
+                      strokeWidth={2.2}
+                    />
+                    <span>{tx(c, locale)}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                href="/about"
+                className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-bold text-brand-700 transition hover:text-mint-600"
+              >
+                {t("more")}
+                <ArrowRight className="size-4" />
+              </Link>
             </div>
           </div>
-          <ul className="space-y-2 border-t border-ink-50 bg-surface-soft/60 px-5 py-4">
-            {careers.map((c, i) => (
-              <li key={i} className="flex gap-2 text-[12.5px] leading-relaxed text-ink-700">
-                <BadgeCheck className="mt-0.5 size-4 shrink-0 text-brand-500" strokeWidth={2.2} />
-                <span>{tx(c, locale)}</span>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/about"
-            className="flex items-center justify-center gap-1.5 border-t border-ink-50 py-3.5 text-[13px] font-bold text-brand-700 transition hover:bg-brand-50"
-          >
-            {t("more")}
-            <ArrowRight className="size-4" />
-          </Link>
         </div>
       </div>
     </section>

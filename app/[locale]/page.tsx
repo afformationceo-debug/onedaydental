@@ -11,7 +11,8 @@ import BeforeAfter from "@/components/sections/BeforeAfter";
 import CelebrityStrip from "@/components/sections/CelebrityStrip";
 import HomeFaq from "@/components/sections/HomeFaq";
 import CategoryChips from "@/components/CategoryChips";
-import TreatmentCard from "@/components/TreatmentCard";
+import TreatmentExplorer from "@/components/TreatmentExplorer";
+import { tx } from "@/lib/i18n-text";
 import PriceTable from "@/components/PriceTable";
 import ReviewSlider from "@/components/ReviewSlider";
 import LineConsult from "@/components/LineConsult";
@@ -51,29 +52,37 @@ export default async function HomePage({
       {/* 5. Chief-doctor authority (김진환) */}
       <DoctorAuthority />
 
-      {/* 6. Treatments preview */}
-      <section className="py-11">
+      {/* 6. Treatments — category TABS (desktop) / ACCORDION (mobile) */}
+      <section className="py-14 lg:py-20">
         <SectionHeader
           kicker={t("categories.kicker")}
           title={t("categories.title")}
           subtitle={t("categories.subtitle")}
         />
-        <div className="mt-6 grid grid-cols-1 gap-4 px-5 md:grid-cols-2 lg:grid-cols-4">
-          {clinic.treatments.slice(0, 4).map((tr, i) => (
-            <Reveal key={tr.id} delay={i * 0.04}>
-              <TreatmentCard
-                treatment={tr}
-                locale={locale}
-                durationLabel={dur}
-                recoveryLabel={rec}
-              />
-            </Reveal>
-          ))}
+        <div className="mt-9">
+          <TreatmentExplorer
+            categories={clinic.categories.map((c) => ({
+              id: c.id,
+              name: tx(c.name, locale),
+              icon: c.icon,
+              items: clinic.treatments
+                .filter((tr) => tr.category === c.id)
+                .map((tr) => ({
+                  slug: tr.slug,
+                  name: tx(tr.name, locale),
+                  tagline: tx(tr.tagline, locale),
+                  duration: tx(tr.duration, locale),
+                  recovery: tx(tr.recovery, locale),
+                  highlights: tr.highlights.map((h) => tx(h, locale)),
+                })),
+            }))}
+            labels={{ duration: dur, recovery: rec, detail: t("categories.viewDetail") }}
+          />
         </div>
-        <div className="mx-auto mt-5 max-w-md px-5">
+        <div className="mx-auto mt-8 max-w-md px-5">
           <Link
             href="/treatments"
-            className="flex items-center justify-center gap-2 rounded-2xl border border-brand-200 bg-brand-50 py-3 text-[14px] font-bold text-brand-700 transition hover:bg-brand-100"
+            className="flex items-center justify-center gap-2 rounded-lg border border-ink-200 bg-surface py-3.5 text-[14px] font-bold text-brand-700 transition hover:border-mint-400 hover:bg-surface-soft"
           >
             {t("categories.viewAll")}
             <ArrowRight className="size-4" />
@@ -82,13 +91,15 @@ export default async function HomePage({
       </section>
 
       {/* 7. Pricing (수가표 — 同價 강조) */}
-      <section className="bg-surface-soft py-11">
-        <SectionHeader
-          kicker={t("prices.kicker")}
-          title={t("prices.title")}
-          subtitle={t("prices.subtitle")}
-        />
-        <div className="mt-6">
+      <section className="bg-surface-soft py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl lg:px-6">
+          <SectionHeader
+            kicker={t("prices.kicker")}
+            title={t("prices.title")}
+            subtitle={t("prices.subtitle")}
+          />
+        </div>
+        <div className="mt-8">
           <PriceTable />
         </div>
       </section>
@@ -97,13 +108,15 @@ export default async function HomePage({
       <BeforeAfter />
 
       {/* 9. Reviews (번체 · 명인/실제 환자 — 별점 미사용) */}
-      <section className="bg-surface-soft py-11">
-        <SectionHeader
-          kicker={t("reviews.kicker")}
-          title={t("reviews.title")}
-          subtitle={t("reviews.subtitle")}
-        />
-        <div className="mt-6">
+      <section className="bg-surface-soft py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl lg:px-6">
+          <SectionHeader
+            kicker={t("reviews.kicker")}
+            title={t("reviews.title")}
+            subtitle={t("reviews.subtitle")}
+          />
+        </div>
+        <div className="mt-8">
           <ReviewSlider reviews={clinic.reviews} />
         </div>
         {/* 함께한 분들 — 병원 제공 홍보 사진 (임성훈) */}
@@ -114,13 +127,15 @@ export default async function HomePage({
       <HomeFaq />
 
       {/* 11. Reservation funnel */}
-      <section id="reservation" className="py-11">
-        <SectionHeader
-          kicker={t("reservation.kicker")}
-          title={t("reservation.title")}
-          subtitle={t("reservation.subtitle")}
-        />
-        <div className="mt-6">
+      <section id="reservation" className="py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl lg:px-6">
+          <SectionHeader
+            kicker={t("reservation.kicker")}
+            title={t("reservation.title")}
+            subtitle={t("reservation.subtitle")}
+          />
+        </div>
+        <div className="mt-8">
           <LineConsult placement="home_reservation" />
         </div>
       </section>

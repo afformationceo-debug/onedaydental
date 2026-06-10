@@ -55,50 +55,53 @@ export default async function TreatmentDetail({
   const name = tx(tr.name, locale);
 
   return (
-    <article className="pb-8">
-      {/* Hero */}
-      <div className="relative h-64 w-full">
+    <article className="mx-auto max-w-5xl pb-12 lg:px-6">
+      {/* Hero — compact, navy framed */}
+      <div className="relative aspect-[16/9] max-h-[340px] w-full overflow-hidden lg:mt-6 lg:rounded-xl">
         <TreatmentImage
           src={tr.image}
           alt={name}
           icon={CATEGORY_ICON[tr.category] ?? "Sparkles"}
           priority
-          sizes="(max-width: 500px) 100vw, 500px"
+          sizes="(max-width: 1024px) 100vw, 768px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-950/88 via-ink-900/30 to-ink-900/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/30 to-brand-950/5" />
+        <div className="tech-grid absolute inset-0 opacity-30" />
         <Link
           href="/treatments"
-          className="absolute left-4 top-4 grid size-9 place-items-center rounded-full bg-white/20 text-white backdrop-blur transition hover:bg-white/30"
+          className="absolute left-4 top-4 grid size-9 place-items-center rounded-lg bg-white/15 text-white backdrop-blur transition hover:bg-white/25"
           aria-label={t("common.backHome")}
         >
           <ArrowLeft className="size-5" />
         </Link>
         <div className="absolute inset-x-0 bottom-0 p-5">
-          <span className="rounded-full bg-clay-500/90 px-2.5 py-1 text-[11px] font-bold text-white">
+          <span className="rounded-md bg-mint-400 px-2.5 py-1 text-[11px] font-bold text-brand-950">
             {tx(tr.tagline, locale)}
           </span>
-          <h1 className="mt-2 text-[1.7rem] font-extrabold leading-tight text-white">{name}</h1>
+          <h1 className="mt-2 font-display text-[clamp(1.5rem,5vw,2.2rem)] font-bold leading-tight text-white">
+            {name}
+          </h1>
         </div>
       </div>
 
       {/* Meta */}
-      <div className="grid grid-cols-2 gap-3 px-5 pt-5">
-        <div className="rounded-2xl bg-surface-soft p-3.5">
-          <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase text-ink-400">
-            <Clock className="size-3.5 text-brand-500" /> {t("common.duration")}
+      <div className="grid grid-cols-2 gap-3 px-5 pt-6 lg:px-0">
+        <div className="rounded-lg border border-ink-100 bg-surface-soft p-3.5">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wide text-ink-400">
+            <Clock className="size-3.5 text-mint-500" /> {t("common.duration")}
           </span>
           <p className="mt-1 text-[14px] font-bold text-ink-900">{tx(tr.duration, locale)}</p>
         </div>
-        <div className="rounded-2xl bg-surface-soft p-3.5">
-          <span className="flex items-center gap-1.5 text-[11px] font-bold uppercase text-ink-400">
-            <Activity className="size-3.5 text-brand-500" /> {t("common.recovery")}
+        <div className="rounded-lg border border-ink-100 bg-surface-soft p-3.5">
+          <span className="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wide text-ink-400">
+            <Activity className="size-3.5 text-mint-500" /> {t("common.recovery")}
           </span>
           <p className="mt-1 text-[14px] font-bold text-ink-900">{tx(tr.recovery, locale)}</p>
         </div>
       </div>
 
       {/* Lead + highlights */}
-      <div className="px-5 pt-6">
+      <div className="px-5 pt-6 lg:px-0">
         <p className="text-[15.5px] font-semibold leading-relaxed text-ink-800">
           {detail ? tx(detail.lead, locale) : tx(tr.description, locale)}
         </p>
@@ -111,9 +114,9 @@ export default async function TreatmentDetail({
           {tr.highlights.map((h, i) => (
             <li
               key={i}
-              className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 text-[12.5px] font-semibold text-brand-700"
+              className="inline-flex items-center gap-1.5 rounded-md bg-surface-soft px-3 py-1.5 text-[12.5px] font-semibold text-brand-700 ring-1 ring-ink-100"
             >
-              <Check className="size-3.5" strokeWidth={3} />
+              <Check className="size-3.5 text-mint-500" strokeWidth={3} />
               {tx(h, locale)}
             </li>
           ))}
@@ -122,11 +125,11 @@ export default async function TreatmentDetail({
 
       {/* Rich sections */}
       {detail && detail.sections.length > 0 && (
-        <div className="mt-8 space-y-6 px-5">
+        <div className="mt-8 space-y-6 px-5 lg:px-0">
           {detail.sections.map((s, i) => (
             <section key={i}>
-              <h2 className="flex items-center gap-2 text-[16px] font-extrabold text-ink-900">
-                <span className="grid size-6 place-items-center rounded-lg bg-brand-100 text-[11px] font-black text-brand-700">
+              <h2 className="flex items-center gap-2 font-display text-[16px] font-bold text-ink-900">
+                <span className="grid size-6 place-items-center rounded-md bg-brand-900 font-mono text-[11px] font-bold text-mint-400">
                   {i + 1}
                 </span>
                 {tx(s.heading, locale)}
@@ -140,32 +143,37 @@ export default async function TreatmentDetail({
       )}
 
       {/* Mid CTA */}
-      <div className="mx-5 mt-8 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-800 p-5 text-white shadow-lg shadow-brand-900/25">
-        <p className="text-[15px] font-extrabold">{t("cta.consultAbout", { name })}</p>
-        <p className="mt-1 text-[12.5px] text-white/80">{t("reservation.subtitle")}</p>
-        <div className="mt-4">
-          <MessengerButtons treatment={name} placement="treatment_detail" variant="row" />
+      <div className="tech-glow relative mx-5 mt-8 overflow-hidden rounded-xl border border-brand-800 bg-brand-950 p-5 text-white lg:mx-0">
+        <div className="tech-grid absolute inset-0 opacity-40" />
+        <div className="relative">
+          <p className="font-display text-[15px] font-bold">{t("cta.consultAbout", { name })}</p>
+          <p className="mt-1 text-[12.5px] text-ink-200">{t("reservation.subtitle")}</p>
+          <div className="mt-4">
+            <MessengerButtons treatment={name} placement="treatment_detail" variant="row" />
+          </div>
         </div>
       </div>
 
       {/* FAQ */}
       {detail && detail.faq.length > 0 && (
-        <div className="mt-9 px-5">
+        <div className="mt-10 px-5 lg:px-0">
           <SectionHeader kicker="FAQ" title={t("treatments.faqTitle")} />
-          <div className="mt-4 space-y-2.5">
+          <div className="mt-5 overflow-hidden rounded-xl border border-ink-100">
             {detail.faq.map((f, i) => (
               <details
                 key={i}
-                className="group rounded-2xl border border-ink-100 bg-white p-4 open:bg-surface-soft"
+                className="group border-b border-ink-100 bg-surface px-5 py-1 transition last:border-b-0 open:bg-surface-soft"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[14px] font-bold text-ink-900">
-                  <span className="flex items-center gap-2">
-                    <HelpCircle className="size-4 shrink-0 text-brand-500" />
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-4 text-[14px] font-bold text-ink-900">
+                  <span className="flex items-center gap-3">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-md bg-brand-50 text-brand-700 transition group-open:bg-mint-400 group-open:text-brand-950">
+                      <HelpCircle className="size-4" />
+                    </span>
                     {tx(f.q, locale)}
                   </span>
-                  <ChevronDown className="size-4 shrink-0 text-ink-400 transition group-open:rotate-180" />
+                  <ChevronDown className="size-5 shrink-0 text-ink-400 transition group-open:rotate-180 group-open:text-mint-500" />
                 </summary>
-                <p className="mt-3 pl-6 text-[13.5px] leading-relaxed text-ink-600">
+                <p className="pb-5 pl-10 text-[13.5px] leading-relaxed text-ink-600">
                   {tx(f.a, locale)}
                 </p>
               </details>
@@ -175,15 +183,15 @@ export default async function TreatmentDetail({
       )}
 
       {/* Final CTA */}
-      <div className="mx-5 mt-9 rounded-3xl bg-clay-500 p-5 text-center text-white shadow-lg shadow-clay-500/30">
-        <p className="text-[16px] font-extrabold">{t("finalCta.title")}</p>
-        <p className="mt-1 text-[12.5px] text-white/85">{t("finalCta.subtitle")}</p>
+      <div className="mx-5 mt-10 rounded-xl border border-mint-400/40 bg-mint-400/8 p-6 text-center lg:mx-0">
+        <p className="font-display text-[16px] font-bold text-ink-900">{t("finalCta.title")}</p>
+        <p className="mt-1 text-[12.5px] text-ink-500">{t("finalCta.subtitle")}</p>
         <div className="mt-4 flex justify-center">
           <MessengerButtons treatment={name} placement="treatment_final" variant="row" />
         </div>
         <Link
           href="/reservation"
-          className="mt-3 inline-block text-[12.5px] font-bold text-white/90 underline underline-offset-2"
+          className="mt-3 inline-block text-[12.5px] font-bold text-brand-700 underline underline-offset-2 hover:text-mint-600"
         >
           {t("reservation.submit")} →
         </Link>

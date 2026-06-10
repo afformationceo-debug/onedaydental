@@ -36,46 +36,46 @@ export default async function AboutPage({
   const clinic = getClinic();
 
   return (
-    <div className="pb-8">
-      {/* Intro */}
-      <section className="px-5 pt-8">
-        <span className="kicker">ABOUT ONEDAY</span>
-        <h1 className="mt-2 text-[1.9rem] font-extrabold leading-tight tracking-tight text-ink-900">
-          {tx(clinic.tagline, locale)}
-        </h1>
-        <p className="mt-4 text-[15px] leading-relaxed text-ink-600">
-          {tx(clinic.intro, locale)}
-        </p>
-      </section>
-
-      {/* Facility image */}
-      <section className="mt-7 px-5">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg shadow-ink-900/10">
+    <div className="mx-auto max-w-screen-2xl pb-12 lg:px-6">
+      {/* Intro + facility image (compact, side-by-side on PC) */}
+      <section className="grid gap-7 px-5 pt-10 lg:grid-cols-2 lg:items-center lg:gap-10 lg:px-0">
+        <div>
+          <span className="kicker">ABOUT ONEDAY</span>
+          <h1 className="mt-3 font-display text-[clamp(1.7rem,5vw,2.6rem)] font-bold leading-[1.12] tracking-tight text-ink-900">
+            {tx(clinic.tagline, locale)}
+          </h1>
+          <p className="mt-4 text-[14.5px] leading-relaxed text-ink-600 lg:text-[15.5px]">
+            {tx(clinic.intro, locale)}
+          </p>
+        </div>
+        <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-ink-100">
           <Image
             src="/facility/hall1/hall1-01.jpg"
             alt={tx(clinic.name, locale)}
             fill
             priority
-            sizes="(max-width: 500px) 100vw, 460px"
+            sizes="(max-width: 1024px) 100vw, 560px"
             className="object-cover"
           />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-950/80 to-transparent p-4">
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-950/85 to-transparent p-4">
             <p className="text-[13px] font-bold text-white">{tx(clinic.address, locale)}</p>
           </div>
         </div>
       </section>
 
       {/* Certifications */}
-      <section className="mt-9 px-5">
-        <h2 className="text-[17px] font-extrabold text-ink-900">{t("trust.registered")}</h2>
-        <ul className="mt-4 space-y-2.5">
+      <section className="mt-12 px-5 lg:px-0">
+        <h2 className="font-display text-[18px] font-bold text-ink-900">
+          {t("trust.registered")}
+        </h2>
+        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
           {clinic.certifications.map((c, i) => (
             <Reveal key={i} delay={i * 0.05}>
-              <li className="flex items-center gap-3 rounded-2xl bg-surface-soft p-3.5">
-                <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gold-500/15 text-gold-600">
+              <li className="flex items-center gap-3 rounded-lg border border-ink-100 bg-surface p-3.5">
+                <span className="grid size-9 shrink-0 place-items-center rounded-md bg-brand-900 text-mint-400">
                   <BadgeCheck className="size-5" strokeWidth={2.3} />
                 </span>
-                <span className="text-[13.5px] font-semibold text-ink-800">
+                <span className="text-[13px] font-semibold text-ink-800">
                   {tx(c, locale)}
                 </span>
               </li>
@@ -85,17 +85,20 @@ export default async function AboutPage({
       </section>
 
       {/* USP */}
-      <section className="mt-9">
+      <section className="mt-12">
         <SectionHeader kicker={t("usp.kicker")} title={t("usp.title")} />
-        <div className="mt-5 grid grid-cols-2 gap-3 px-5">
+        <div className="mt-6 grid grid-cols-2 gap-3 px-5 lg:grid-cols-4 lg:px-0">
           {clinic.usps.map((u, i) => {
             const Icon = getIcon(u.icon);
             return (
-              <div key={i} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-ink-100">
-                <span className="grid size-10 place-items-center rounded-xl bg-brand-50 text-brand-600">
+              <div
+                key={i}
+                className="group rounded-lg border border-ink-100 bg-surface p-4 transition hover:border-mint-400"
+              >
+                <span className="grid size-10 place-items-center rounded-md border border-brand-100 bg-brand-50 text-brand-700 transition group-hover:border-mint-400 group-hover:text-mint-600">
                   <Icon className="size-5" strokeWidth={2.2} />
                 </span>
-                <h3 className="mt-3 text-[13.5px] font-extrabold text-ink-900">
+                <h3 className="mt-3 text-[13.5px] font-bold text-ink-900">
                   {tx(u.title, locale)}
                 </h3>
                 <p className="mt-1 text-[12px] leading-relaxed text-ink-500">

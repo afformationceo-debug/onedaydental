@@ -6,13 +6,13 @@ export function LogoMark({ className }: { className?: string }) {
     <svg viewBox="0 0 48 48" className={className} aria-hidden role="img" fill="none">
       <defs>
         <linearGradient id="od-tooth" x1="0" y1="0" x2="48" y2="48">
-          <stop offset="0%" stopColor="#a288d1" />
-          <stop offset="60%" stopColor="#714fa6" />
-          <stop offset="100%" stopColor="#5d4087" />
+          <stop offset="0%" stopColor="#155e7e" />
+          <stop offset="60%" stopColor="#0f3a55" />
+          <stop offset="100%" stopColor="#0b2942" />
         </linearGradient>
         <linearGradient id="od-spark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#e8c074" />
-          <stop offset="100%" stopColor="#c8902f" />
+          <stop offset="0%" stopColor="#5fe4c5" />
+          <stop offset="100%" stopColor="#2dd4bf" />
         </linearGradient>
       </defs>
       {/* stylized tooth */}
@@ -39,13 +39,13 @@ export default function Logo({
   showSub?: boolean;
 }) {
   const word = variant === "light" ? "text-white" : "text-ink-900";
-  const accent = variant === "light" ? "text-brand-200" : "text-brand-600";
+  const accent = variant === "light" ? "text-mint-400" : "text-mint-600";
   const sub = variant === "light" ? "text-white/60" : "text-ink-400";
   return (
     <span className={cn("flex items-center gap-2", className)}>
       <LogoMark className="size-9 shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className={cn("text-[17px] font-extrabold tracking-tight", word)}>
+        <span className={cn("font-display text-[18px] font-bold tracking-tight", word)}>
           ONE<span className={accent}>DAY</span>
         </span>
         {showSub && (

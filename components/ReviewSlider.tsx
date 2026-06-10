@@ -34,18 +34,18 @@ export default function ReviewSlider({ reviews }: { reviews: Review[] }) {
           return (
             <article
               key={r.id}
-              className="flex w-[270px] shrink-0 snap-start flex-col justify-between rounded-3xl bg-white p-5 shadow-sm ring-1 ring-ink-100"
+              className="flex w-[270px] shrink-0 snap-start flex-col justify-between rounded-xl border border-ink-100 bg-surface p-5 transition hover:border-mint-400 hover:shadow-tech lg:w-[300px]"
             >
               <div>
-                <span className="grid size-9 place-items-center rounded-xl bg-brand-50 text-brand-500">
+                <span className="grid size-9 place-items-center rounded-lg bg-brand-900 text-mint-400">
                   <Quote className="size-4" strokeWidth={2.4} />
                 </span>
                 <p className="mt-3.5 text-[14.5px] font-semibold leading-relaxed text-ink-800">
                   {caption}
                 </p>
               </div>
-              <div className="mt-4 flex items-center justify-between border-t border-ink-50 pt-3">
-                <span className="rounded-full bg-surface-soft px-2.5 py-1 text-[11px] font-bold text-brand-700">
+              <div className="mt-4 flex items-center justify-between border-t border-ink-100 pt-3">
+                <span className="rounded-md bg-surface-soft px-2.5 py-1 text-[11px] font-bold text-brand-700 ring-1 ring-ink-100">
                   {t(`country.${r.country}`)}
                 </span>
                 <a

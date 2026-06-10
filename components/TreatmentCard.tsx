@@ -26,7 +26,7 @@ export default function TreatmentCard({
   return (
     <Link
       href={`/treatments/${tr.slug}`}
-      className="group block overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-100 transition hover:shadow-xl hover:shadow-ink-900/10"
+      className="group block overflow-hidden rounded-xl border border-ink-100 bg-surface transition hover:border-mint-400 hover:shadow-tech"
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <TreatmentImage
@@ -35,8 +35,8 @@ export default function TreatmentCard({
           icon={CATEGORY_ICON[tr.category] ?? "Sparkles"}
           className="transition duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/30 to-transparent" />
-        <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-bold text-brand-700 backdrop-blur">
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 to-transparent" />
+        <span className="absolute left-3 top-3 rounded-md bg-brand-950/80 px-2.5 py-1 text-[11px] font-bold text-mint-300 backdrop-blur">
           {tx(tr.tagline, locale)}
         </span>
       </div>
@@ -46,27 +46,27 @@ export default function TreatmentCard({
           <h3 className="text-[16px] font-extrabold leading-tight text-ink-900">
             {tx(tr.name, locale)}
           </h3>
-          <ArrowUpRight className="mt-0.5 size-5 shrink-0 text-ink-300 transition group-hover:text-brand-500" />
+          <ArrowUpRight className="mt-0.5 size-5 shrink-0 text-ink-300 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-mint-500" />
         </div>
 
         <div className="mt-2.5 flex flex-wrap gap-1.5">
           {tr.highlights.slice(0, 3).map((h, i) => (
             <span
               key={i}
-              className="rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand-700"
+              className="rounded-md bg-surface-soft px-2 py-0.5 text-[11px] font-semibold text-brand-700 ring-1 ring-ink-100"
             >
               {tx(h, locale)}
             </span>
           ))}
         </div>
 
-        <div className="mt-3.5 flex items-center gap-4 border-t border-ink-50 pt-3 text-[11.5px] font-medium text-ink-500">
+        <div className="mt-3.5 flex items-center gap-4 border-t border-ink-100 pt-3 text-[11.5px] font-medium text-ink-500">
           <span className="flex items-center gap-1.5">
-            <Clock className="size-3.5 text-brand-400" />
+            <Clock className="size-3.5 text-mint-500" />
             {durationLabel}: {tx(tr.duration, locale)}
           </span>
           <span className="flex items-center gap-1.5">
-            <Activity className="size-3.5 text-brand-400" />
+            <Activity className="size-3.5 text-mint-500" />
             {tx(tr.recovery, locale)}
           </span>
         </div>

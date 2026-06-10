@@ -31,23 +31,23 @@ export default async function ReservationPage({
   const clinic = getClinic();
 
   return (
-    <div className="pb-8 pt-6">
+    <div className="mx-auto max-w-screen-2xl pb-12 pt-10 lg:px-6">
       <SectionHeader
         kicker={t("reservation.kicker")}
         title={t("reservation.title")}
         subtitle={t("reservation.subtitle")}
       />
-      <div className="mt-6">
+      <div className="mt-8">
         <LineConsult placement="reservation_page" />
       </div>
 
-      <div className="mt-9">
+      <div className="mt-10">
         <LocationMap />
       </div>
 
-      <div className="mx-auto mt-6 max-w-3xl rounded-3xl bg-surface-soft p-5">
+      <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-ink-100 bg-surface-soft p-5">
         <div className="flex items-start gap-2.5 text-[13px] text-ink-700">
-          <Clock className="mt-0.5 size-4 shrink-0 text-brand-500" />
+          <Clock className="mt-0.5 size-4 shrink-0 text-mint-500" />
           <ul className="space-y-1 font-semibold">
             {clinic.hours.map((h, i) => (
               <li key={i}>{tx(h, locale)}</li>
