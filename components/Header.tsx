@@ -77,7 +77,7 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
     >
       <div className="mx-auto flex h-14 max-w-screen-2xl items-center justify-between px-4 lg:h-16 lg:px-8">
         <Link href="/" aria-label="ONEDAY Dental home">
-          <Logo className="scale-[0.92] origin-left" />
+          <Logo className="scale-[0.92] origin-left" priority />
         </Link>
 
         {/* Desktop inline nav */}

@@ -1,64 +1,69 @@
+import Image from "next/image";
 import { cn } from "@/lib/cn";
 
-/** Crisp SVG tooth-mark in lilac→gold gradient (ONEDAY Dental brand). */
+/**
+ * 원형 ONEDAY 엠블럼 마크 (로딩 · 에러 · 404 화면용 경량 SVG).
+ * 공식 배지를 단순화한 형태 — 풀 로고 PNG는 <Logo/>가 담당.
+ */
 export function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden role="img" fill="none">
       <defs>
-        <linearGradient id="od-tooth" x1="0" y1="0" x2="48" y2="48">
-          <stop offset="0%" stopColor="#155e7e" />
-          <stop offset="60%" stopColor="#0f3a55" />
-          <stop offset="100%" stopColor="#0b2942" />
-        </linearGradient>
-        <linearGradient id="od-spark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#5fe4c5" />
-          <stop offset="100%" stopColor="#2dd4bf" />
+        <linearGradient id="od-ring" x1="0" y1="0" x2="48" y2="48">
+          <stop offset="0%" stopColor="#2a7fd4" />
+          <stop offset="100%" stopColor="#1457a0" />
         </linearGradient>
       </defs>
-      {/* stylized tooth */}
-      <path
-        d="M24 7c-4.2 0-6.2-1.6-9.3-1.6C10.3 5.4 7 8.8 7 14.2c0 4 1.2 7 2.4 11.4 1 3.6 1.3 7.4 2 11 .5 2.7 1.4 5.6 3.3 5.6 2.3 0 2.6-3.8 3.4-7.2.7-3 1.4-5 1.9-5 .5 0 1.2 2 1.9 5 .8 3.4 1.1 7.2 3.4 7.2 1.9 0 2.8-2.9 3.3-5.6.7-3.6 1-7.4 2-11C36.8 21.2 41 18.2 41 14.2c0-5.4-3.3-8.8-7.7-8.8C30.2 5.4 28.2 7 24 7Z"
-        fill="url(#od-tooth)"
-      />
-      {/* sparkle = "당일 완성 / 심미" */}
-      <path
-        d="M34 9.5c.4 1.6.9 2.1 2.5 2.5-1.6.4-2.1.9-2.5 2.5-.4-1.6-.9-2.1-2.5-2.5 1.6-.4 2.1-.9 2.5-2.5Z"
-        fill="url(#od-spark)"
-      />
+      <circle cx="24" cy="24" r="22" fill="url(#od-ring)" />
+      <circle cx="24" cy="24" r="16.5" fill="#fff" />
+      <text
+        x="24"
+        y="31.5"
+        textAnchor="middle"
+        fontSize="22"
+        fontWeight="800"
+        fontFamily="var(--font-display, system-ui), sans-serif"
+        fill="#1457a0"
+      >
+        1
+      </text>
     </svg>
   );
 }
 
+/**
+ * 원데이치과 공식 로고 (onedaydent.com 공식 자산: 원형 배지 + "ONE DAY DENTISTRY").
+ * - variant="dark"  : 밝은 배경(헤더)용 — 공식 컬러 로고 그대로.
+ * - variant="light" : 어두운 배경(푸터)용 — 공식 로고를 흰색 칩에 올려 가시성 확보.
+ *   (공식 로고가 컬러 1종뿐이라 흰색 워드마크 버전이 없어 칩 방식 채택.)
+ */
 export default function Logo({
   className,
   variant = "dark",
-  showSub = true,
+  priority = false,
 }: {
   className?: string;
   variant?: "dark" | "light";
-  showSub?: boolean;
+  priority?: boolean;
 }) {
-  const word = variant === "light" ? "text-white" : "text-ink-900";
-  const accent = variant === "light" ? "text-mint-400" : "text-mint-600";
-  const sub = variant === "light" ? "text-white/60" : "text-ink-400";
+  const isLight = variant === "light";
   return (
-    <span className={cn("flex items-center gap-2", className)}>
-      <LogoMark className="size-9 shrink-0" />
-      <span className="flex flex-col leading-none">
-        <span className={cn("font-display text-[18px] font-bold tracking-tight", word)}>
-          ONE<span className={accent}>DAY</span>
-        </span>
-        {showSub && (
-          <span
-            className={cn(
-              "mt-0.5 text-[8.5px] font-semibold uppercase tracking-[0.3em]",
-              sub,
-            )}
-          >
-            원데이치과 · DENTAL
-          </span>
-        )}
-      </span>
+    <span
+      className={cn(
+        "inline-flex items-center",
+        isLight && "rounded-lg bg-white px-3 py-2 shadow-sm ring-1 ring-black/5",
+        className,
+      )}
+    >
+      <Image
+        src="/brand/oneday-logo.png"
+        alt="ONEDAY Dental · 원데이치과"
+        width={325}
+        height={72}
+        priority={priority}
+        sizes="(max-width: 640px) 150px, 180px"
+        className="h-7 w-auto select-none sm:h-8"
+      />
     </span>
   );
 }
