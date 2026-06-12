@@ -47,7 +47,7 @@ export default function JsonLd({ locale }: { locale: Locale }) {
     "@type": "MedicalOrganization",
     "@id": `${SITE_URL}/#clinic`,
     name: brandName,
-    url: `${SITE_URL}/${locale}`,
+    url: SITE_URL,
     medicalSpecialty: "Dentistry",
   } as const;
 
@@ -57,10 +57,10 @@ export default function JsonLd({ locale }: { locale: Locale }) {
     "@id": `${SITE_URL}/#${branch.id}`,
     name: tx(branch.name, locale),
     description: tx(branch.services, locale),
-    url: `${SITE_URL}/${locale}`,
+    url: SITE_URL,
     inLanguage: localeMeta[locale].htmlLang,
     telephone: branch.phone,
-    image: `${SITE_URL}/gen-img/og.jpg`,
+    image: `${SITE_URL}/facility/og.jpg`,
     priceRange: "$$$",
     medicalSpecialty: "Dentistry",
     // Taiwan is the primary target market for this global landing.

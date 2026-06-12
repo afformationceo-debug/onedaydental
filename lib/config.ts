@@ -1,7 +1,7 @@
 import type { Locale } from "./types";
 
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://global.oneday-dental.co.kr";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://tw.onedaydent.com";
 
 /** Messenger deep-links. locale → preferred channel. */
 export interface Messenger {

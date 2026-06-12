@@ -23,7 +23,7 @@ export async function generateMetadata({
   const l = hasLocale(routing.locales, locale) ? (locale as Locale) : "zh-TW";
   return {
     metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? "https://global.oneday-dental.co.kr",
+      process.env.NEXT_PUBLIC_SITE_URL ?? "https://tw.onedaydent.com",
     ),
     ...buildMetadata({ locale: l, path: "/" }),
     verification: analytics.gscVerification

@@ -21,8 +21,8 @@ const nextConfig: NextConfig = {
     const csp = [
       "default-src 'self'",
       "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.instagram.com",
-      "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
-      "font-src 'self' data: https://cdn.jsdelivr.net",
+      "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com",
+      "font-src 'self' data: https://cdn.jsdelivr.net https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
       "frame-src https://www.instagram.com https://www.google.com https://maps.google.com",
       "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.facebook.com",

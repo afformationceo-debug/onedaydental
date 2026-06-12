@@ -48,14 +48,15 @@ interface PageMeta {
 export function buildMetadata({ locale, path, title, description }: PageMeta): Metadata {
   const fullTitle = title ? `${title} | ${SITE_NAME[locale]}` : OG_TITLE[locale];
   const desc = description ?? OG_DESC[locale];
-  const canonical = `${SITE_URL}/${locale}${path === "/" ? "" : path}`;
+  // No locale prefix (single locale, dedicated subdomain) → canonical is clean.
+  const canonical = `${SITE_URL}${path === "/" ? "" : path}`;
 
   const languages: Record<string, string> = {};
   for (const l of locales) {
-    languages[localeMeta[l].htmlLang] = `${SITE_URL}/${l}${path === "/" ? "" : path}`;
+    languages[localeMeta[l].htmlLang] = canonical;
   }
-  // TW is the primary acquisition market → x-default points to zh-TW
-  languages["x-default"] = `${SITE_URL}/zh-TW${path === "/" ? "" : path}`;
+  // TW is the primary acquisition market → x-default points to the same clean URL.
+  languages["x-default"] = canonical;
 
   return {
     title: fullTitle,
@@ -69,7 +70,7 @@ export function buildMetadata({ locale, path, title, description }: PageMeta): M
       siteName: SITE_NAME[locale],
       locale: localeMeta[locale].ogLocale,
       type: "website",
-      images: [{ url: `${SITE_URL}/gen-img/og.jpg`, width: 1200, height: 630 }],
+      images: [{ url: `${SITE_URL}/facility/og.jpg`, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

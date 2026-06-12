@@ -13,7 +13,7 @@ export default async function Hero() {
       {/* Background image + navy wash + blueprint grid */}
       <div className="absolute inset-0">
         <Image
-          src="/gen-img/hero.jpg"
+          src="/facility/reception-wide.jpg"
           alt=""
           fill
           priority

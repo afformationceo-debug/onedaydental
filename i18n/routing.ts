@@ -7,9 +7,9 @@ export type Locale = (typeof locales)[number];
 export const routing = defineRouting({
   locales,
   defaultLocale: "zh-TW",
-  // Every URL carries its locale prefix → clean hreflang + medical-tourism friendly.
-  // Root "/" redirects to "/zh-TW".
-  localePrefix: "always",
+  // Single locale on a dedicated subdomain (tw.onedaydent.com) → no prefix needed.
+  // Root "/" serves zh-TW directly. Clean URLs: /treatments, not /zh-TW/treatments.
+  localePrefix: "never",
   localeDetection: false,
 });
 

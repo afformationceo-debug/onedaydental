@@ -18,7 +18,7 @@ export default function RootNotFound() {
           <p style={{ fontSize: "48px", fontWeight: 800, color: "#1b1a22", margin: 0 }}>404</p>
           <p style={{ color: "#0b2942" }}>找不到頁面 · 페이지를 찾을 수 없습니다</p>
           <Link
-            href="/zh-TW"
+            href="/"
             style={{
               marginTop: "8px",
               padding: "12px 24px",
