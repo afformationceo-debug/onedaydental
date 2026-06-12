@@ -55,4 +55,15 @@ export function trackConsultClick(opts: {
   const payload = { ...opts, ...utm };
   window.gtag?.("event", "consult_click", payload);
   window.fbq?.("track", "Contact", payload);
+  // 자체 인입 적재 (구글 시트). keepalive로 LINE 이동 후에도 전송 보장. 실패는 무시.
+  try {
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* noop */
+  }
 }
