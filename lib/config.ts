@@ -36,6 +36,7 @@ const INSTAGRAM: Messenger = {
  */
 const RAW_BY_LOCALE: Record<Locale, Messenger[]> = {
   "zh-TW": [LINE, INSTAGRAM],
+  ko: [LINE, INSTAGRAM],
 };
 
 /** Keep configured channels; if none configured, keep LINE as the visible placeholder. */
@@ -46,6 +47,7 @@ function filterConfigured(list: Messenger[]): Messenger[] {
 
 export const messengersByLocale: Record<Locale, Messenger[]> = {
   "zh-TW": filterConfigured(RAW_BY_LOCALE["zh-TW"]),
+  ko: filterConfigured(RAW_BY_LOCALE["ko"]),
 };
 
 /** Direct LINE channel URL (env-injected). Falls back to "#". Used by every CTA. */
@@ -58,6 +60,7 @@ export function primaryMessenger(locale: Locale): Messenger {
 /** Prefill consult message per locale. {treatment} replaced at call site. */
 export const consultPrefill: Record<Locale, string> = {
   "zh-TW": "我從 ONEDAY 牙醫官網看到，想諮詢 {treatment}",
+  ko: "ONEDAY 치과 공식 홈페이지를 보고 {treatment} 상담을 원합니다",
 };
 
 export function buildMessengerHref(

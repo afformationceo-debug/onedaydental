@@ -4,9 +4,10 @@
 // matching this shape. UI reads only typed data — never raw HTML.
 // ============================================================
 
-// Single active site locale (Taiwan). Source data (clinic.json) may still carry
-// a legacy `ko` key — kept only as a fallback inside `tx`, never rendered as a locale.
-export type Locale = "zh-TW";
+// Site locales come from the i18n routing config (zh-TW public + ko review-only).
+// Single source of truth = i18n/routing.ts.
+import type { Locale as RoutingLocale } from "@/i18n/routing";
+export type Locale = RoutingLocale;
 
 /** A string that may be localized. Falls back zh-TW -> legacy ko -> first available. */
 export type I18nText = Partial<Record<Locale, string>> & { ko?: string };

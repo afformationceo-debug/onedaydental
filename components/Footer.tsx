@@ -23,10 +23,19 @@ export default async function Footer() {
           </div>
 
           <div className="mt-7 space-y-3 text-sm lg:mt-0 lg:flex-1">
-            <p className="flex items-start gap-2.5">
+            <div className="flex items-start gap-2.5">
               <MapPin className="mt-0.5 size-4 shrink-0 text-mint-400" />
-              <span>{tx(clinic.address, locale)}</span>
-            </p>
+              <ul className="space-y-1.5">
+                {clinic.branches.map((b, i) => (
+                  <li key={b.id} className="leading-snug">
+                    <span className="mr-1.5 font-semibold text-mint-300">
+                      {locale === "ko" ? `${i + 1}관` : `${i + 1}館`}
+                    </span>
+                    {tx(b.address, locale)}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="flex items-start gap-2.5">
               <Clock className="mt-0.5 size-4 shrink-0 text-mint-400" />
               <ul className="space-y-0.5">
