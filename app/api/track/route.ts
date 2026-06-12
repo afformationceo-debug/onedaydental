@@ -13,6 +13,9 @@ export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => ({}));
     const payload = {
+      // 방문자 국가/지역 — Vercel edge geo 헤더(별도 IP 분석 불필요). 로컬은 빈값.
+      country: request.headers.get("x-vercel-ip-country") ?? "",
+      city: request.headers.get("x-vercel-ip-city") ?? "",
       channel: body.channel ?? "",
       placement: body.placement ?? "",
       treatment: body.treatment ?? "",
