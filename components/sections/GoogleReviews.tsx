@@ -1,14 +1,14 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import { Star } from "lucide-react";
+import { Star, ExternalLink } from "lucide-react";
 import { SiGoogle } from "react-icons/si";
 import type { Locale } from "@/lib/types";
 import { SectionHeader } from "./Section";
 
 /**
- * 실제 Google 지도 리뷰(1관, 한국 환자)를 번체로 번역해 표시한다.
- * ★ 사이트 내 표시(번역+출처 명시)이며 구글맵 직접 게시가 아니다 — 정책 안전.
- * 실제 5★ 긍정 리뷰 중 미백/라미·심미·신뢰 관점으로 선별(큐레이션은 정당).
- * 원문 한국어임을 명시(투명성). 출처: maps.app.goo.gl/Aj3NUyUPkgiA15udA
+ * 실제 Google 지도 리뷰(1·2·3관, 한국 환자)를 번체로 번역해 표시한다.
+ * ★ 사이트 내 표시(번역+출처 명시+원문언어 명시)이며 구글맵 직접 게시가 아니다 — 정책 안전.
+ * 실제 5★ 긍정 리뷰 중 미백/라미·심미·신뢰·친절 관점으로 선별(큐레이션은 정당).
+ * 하단 3개관 구글맵 링크로 실제 리뷰임을 검증 가능(투명성).
  */
 
 type Review = { tag: Record<Locale, string>; body: Record<Locale, string> };
@@ -24,8 +24,15 @@ const REVIEWS: Review[] = [
   {
     tag: { "zh-TW": "齒列矯正", ko: "치아교정" },
     body: {
-      "zh-TW": "拖了好久才來做齒列矯正，這裡的人都好親切，裝潢也很漂亮，很喜歡！",
-      ko: "미루고 미루다가 교정치료하러 왔는데 사람들 다 너무 친절하시고 인테리어도 멋져서 좋았어요!",
+      "zh-TW": "去諮詢矯正，醫師仔細確認牙齒排列狀態、把矯正過程解釋得很好懂，疑問也一一親切說明，很有信任感，能輕鬆諮詢很滿意～",
+      ko: "교정 상담을 받으러 방문했는데 치아 배열 상태를 자세히 확인해 주시고 교정 과정도 이해하기 쉽게 설명해 주셨어요. 궁금했던 부분도 하나하나 친절하게 알려주셔서 신뢰가 갔고, 부담 없이 상담받을 수 있어서 만족스러웠습니다~",
+    },
+  },
+  {
+    tag: { "zh-TW": "良心看診", ko: "양심진료" },
+    body: {
+      "zh-TW": "去年做了根管治療，這次久違回診檢查。本來擔心牙齒不好又容易蛀牙會痛，結果醫師說沒有蛀牙、只幫我洗牙並提醒用牙線～真的是良心牙科！",
+      ko: "작년에 신경치료하고 오랜만에 검진하러 왔는데 이가 약하고 충치도 잘 생겨서 아플까봐 걱정했는데, 충치 없고 치실 잘 해달라며 스케일링만 해주시더라고요~ 여기는 정말 양심 치과예요!",
     },
   },
   {
@@ -33,6 +40,13 @@ const REVIEWS: Review[] = [
     body: {
       "zh-TW": "來看牙時發現院內設施非常乾淨，很吸睛。實際看診後覺得院長技術很好，超棒～！",
       ko: "치과 치료 받으러 왔는데 내부시설이 너무 깨끗해서 눈이 가더라구요. 진료도 받아봤는데 원장님 실력도 있으시고 너무 좋아요~!!",
+    },
+  },
+  {
+    tag: { "zh-TW": "詳細說明", ko: "상세 설명" },
+    body: {
+      "zh-TW": "治療前後都仔細說明，讓我能安心看診。院內整潔、員工應對也好，很滿意。",
+      ko: "치료 전후 설명을 자세하게 해주셔서 안심하고 진료받을 수 있었어요. 병원도 깔끔하고 직원분들 응대도 좋아서 만족스럽습니다.",
     },
   },
   {
@@ -50,12 +64,25 @@ const REVIEWS: Review[] = [
     },
   },
   {
+    tag: { "zh-TW": "舒適氛圍", ko: "편안한 분위기" },
+    body: {
+      "zh-TW": "牙科卻有咖啡香超棒！大家都很親切，補蛀牙也比想像中不可怕。",
+      ko: "치과인데 카페처럼 커피향나서 너무 좋아요! 다들 친절하시고 충치치료 했는데 생각보다 덜 무서웠어요.",
+    },
+  },
+  {
     tag: { "zh-TW": "推薦", ko: "추천" },
     body: {
       "zh-TW": "即使候診人多，仍親切應對、面帶微笑，讓我放鬆許多！院長們看診也真的很棒，會多多推薦給親友～",
       ko: "대기 인원이 많아서 정신없었는데도 친절하게 응대해주시고 웃으면서 말씀해주셔서 긴장 많이 풀렸어요! 원장님들도 진료 진짜 잘 해주세요! 지인들한테 추천 많이 하려고요~",
     },
   },
+];
+
+const MAPS = [
+  { label: "1館", url: "https://maps.app.goo.gl/Aj3NUyUPkgiA15udA" },
+  { label: "2館", url: "https://maps.app.goo.gl/2rQDHq8LvBhuDUMT9" },
+  { label: "3館", url: "https://maps.app.goo.gl/K7H5gNuTafr5h5D48" },
 ];
 
 export default async function GoogleReviews() {
@@ -97,7 +124,25 @@ export default async function GoogleReviews() {
           ))}
         </div>
 
-        <p className="mx-5 mt-6 text-center text-[11.5px] leading-relaxed text-ink-400 lg:mx-0">
+        {/* 실제 리뷰임을 검증할 수 있는 3개관 구글맵 링크 (투명성) */}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5 px-5 lg:px-0">
+          <span className="text-[12.5px] font-semibold text-ink-500">{t("moreOnGoogle")}</span>
+          {MAPS.map((m) => (
+            <a
+              key={m.label}
+              href={m.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-ink-200 bg-surface px-3.5 py-1.5 text-[12.5px] font-bold text-brand-700 transition hover:border-mint-400 hover:bg-surface-soft"
+            >
+              <SiGoogle className="size-3.5" />
+              {m.label}
+              <ExternalLink className="size-3" />
+            </a>
+          ))}
+        </div>
+
+        <p className="mx-5 mt-5 text-center text-[11.5px] leading-relaxed text-ink-400 lg:mx-0">
           {t("disclaimer")}
         </p>
       </div>

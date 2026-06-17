@@ -233,8 +233,9 @@
   "googleReviews": {
     "kicker": "GOOGLE REVIEWS",
     "title": "Google 上的真實評論",
-    "subtitle": "韓國患者於 Google 地圖留下的真實評論（韓文原文翻譯為繁體）",
+    "subtitle": "1・2・3館的韓國患者於 Google 地圖留下的真實評論（韓文原文翻譯為繁體）",
     "source": "韓國患者 · Google 評論",
-    "disclaimer": "以上為本院 Google 地圖（1館）的真實患者評論，原文為韓文、由本院翻譯為繁體中文。評論屬個人主觀經驗，療程效果因人而異。"
+    "disclaimer": "以上為本院 Google 地圖（1・2・3館）的真實患者評論，原文為韓文、由本院翻譯為繁體中文。評論屬個人主觀經驗，療程效果因人而異。",
+    "moreOnGoogle": "在 Google 地圖查看更多真實評論："
   }
 }
