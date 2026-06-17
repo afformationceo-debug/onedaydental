@@ -6,10 +6,12 @@ import type { Locale } from "@/lib/types";
 import { SectionHeader } from "./Section";
 
 /**
- * 미백/라미 비주얼 캐러셀 — 광고(미백/라미)로 유입된 사용자가 히어로 직후
+ * 미백/라미 비주얼 마퀴 — 광고(미백/라미)로 유입된 사용자가 히어로 직후
  * "이게 당신이 찾던 시술"을 즉시 비주얼로 확인하게 한다. (브리프 §4-2)
- * 온보딩 캐러셀 카드(9:16, K-뷰티 모델 + 시술 소구, 브랜드 톤 일치)를 가로 스와이프로.
- * 카드 클릭 → 해당 시술 상세. CSS scroll-snap(서버 컴포넌트, JS 0).
+ * - 자동 무한 마퀴(right→left, track 2배 복제 → -50% seamless loop, globals @keyframes marquee).
+ * - hover/press 시 일시정지, motion-reduce 시 정지.
+ * - 카드 aspect-[9/16] 고정으로 높이 통일(원본 비율 9:13.5~9:17.8이 들쭉날쭉 → object-cover).
+ * - 카드 클릭 → 해당 시술 상세.
  */
 
 type Slide = { src: string; slug: string; alt: Record<Locale, string> };
@@ -28,6 +30,8 @@ const SLIDES: Slide[] = [
 export default async function PromoCarousel() {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("promo");
+  // 트랙 2배 복제 → -50% translate가 seamless loop. (globals @keyframes marquee)
+  const track = [...SLIDES, ...SLIDES];
 
   return (
     <section className="py-12 lg:py-16">
@@ -35,22 +39,31 @@ export default async function PromoCarousel() {
         <SectionHeader kicker={t("kicker")} title={t("title")} subtitle={t("subtitle")} />
       </div>
 
-      <div className="mt-7 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <ul className="flex snap-x snap-mandatory gap-3.5 px-5 lg:px-6">
-          {SLIDES.map((s, i) => (
-            <li key={i} className="snap-start">
+      <div className="group relative mt-7 overflow-hidden">
+        {/* 양끝 페이드 마스크 */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-surface to-transparent lg:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-surface to-transparent lg:w-20" />
+
+        <ul
+          className="flex w-max gap-4 px-4 [animation:marquee_60s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none]"
+          aria-label={t("title")}
+        >
+          {track.map((s, i) => (
+            <li key={`${s.src}-${i}`} className="shrink-0" aria-hidden={i >= SLIDES.length}>
               <Link
                 href={`/treatments/${s.slug}`}
-                className="group block w-[228px] shrink-0 overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-tech transition hover:border-mint-400 hover:shadow-lg sm:w-[256px]"
+                tabIndex={i >= SLIDES.length ? -1 : 0}
+                className="group/card block w-[190px] overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-tech transition hover:border-mint-400 hover:shadow-lg sm:w-[220px]"
               >
-                <Image
-                  src={s.src}
-                  alt={s.alt[locale]}
-                  width={720}
-                  height={1200}
-                  sizes="(max-width: 640px) 228px, 256px"
-                  className="h-auto w-full"
-                />
+                <div className="relative aspect-[9/16] w-full overflow-hidden bg-surface-soft">
+                  <Image
+                    src={s.src}
+                    alt={i < SLIDES.length ? s.alt[locale] : ""}
+                    fill
+                    sizes="(max-width: 640px) 190px, 220px"
+                    className="object-cover object-top transition duration-500 group-hover/card:scale-[1.03]"
+                  />
+                </div>
               </Link>
             </li>
           ))}
