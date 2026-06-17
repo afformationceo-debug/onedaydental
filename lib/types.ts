@@ -106,23 +106,6 @@ export interface Branch {
   imageAlt?: I18nText; // localized alt text for the facility photo
 }
 
-/** A single before/after case (intraoral / clinical, no identifiable face). */
-export interface BaCase {
-  id: string;
-  before: string; // /ba/...
-  after: string; // /ba/...
-  caption: I18nText;
-}
-export interface BaTreatmentGroup {
-  title: I18nText;
-  cases: BaCase[];
-}
-export interface BeforeAfterData {
-  disclaimer: I18nText; // medical-advertising compliance notice
-  implant: BaTreatmentGroup;
-  ortho: BaTreatmentGroup;
-}
-
 /** Promotional photos provided by the clinic (e.g. celebrity visits). */
 export interface CelebrityPhoto {
   src: string; // /celebrity/...
@@ -150,7 +133,6 @@ export interface ClinicData {
   treatments: Treatment[];
   prices: PriceItem[];
   reviews: Review[];
-  ba: BeforeAfterData;
   celebrities: CelebritiesData;
   meta: {
     scrapedAt: string | null;

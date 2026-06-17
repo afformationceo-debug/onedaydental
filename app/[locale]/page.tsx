@@ -8,7 +8,6 @@ import TrustBar from "@/components/sections/TrustBar";
 import PromoCarousel from "@/components/sections/PromoCarousel";
 import UspSection from "@/components/sections/UspSection";
 import DoctorAuthority from "@/components/sections/DoctorAuthority";
-import BeforeAfter from "@/components/sections/BeforeAfter";
 import GoogleReviews from "@/components/sections/GoogleReviews";
 import CelebrityStrip from "@/components/sections/CelebrityStrip";
 import HomeFaq from "@/components/sections/HomeFaq";
@@ -114,9 +113,6 @@ export default async function HomePage({
 
       {/* 7. Chief-doctor authority (신뢰 보강 — 후순위로) */}
       <DoctorAuthority />
-
-      {/* 8. Before & After (라미/미백 위주 — imagery pending) */}
-      <BeforeAfter />
 
       {/* 9. Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
       <section className="bg-surface-soft py-14 lg:py-20">
