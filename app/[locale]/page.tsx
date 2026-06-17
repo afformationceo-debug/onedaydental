@@ -46,6 +46,9 @@ export default async function HomePage({
       {/* 2. Trust badge strip (放心 anchor) */}
       <TrustBar />
 
+      {/* 2.4 Google 실제 리뷰 (신뢰자산 — 소개 직후·자체제작 캐러셀 앞에 배치) */}
+      <GoogleReviews />
+
       {/* 2.5 "이게 당신이 찾던 시술" — 미백/라미 비주얼 캐러셀 (브리프 §4-2, 광고 정렬) */}
       <PromoCarousel />
 
@@ -114,10 +117,7 @@ export default async function HomePage({
       {/* 7. Chief-doctor authority (신뢰 보강 — 후순위로) */}
       <DoctorAuthority />
 
-      {/* 9. Google 실제 리뷰 (한국 환자 번체 — 신뢰자산이므로 후기 섹션 바로 위로 배치) */}
-      <GoogleReviews />
-
-      {/* 9.5 Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
+      {/* 9. Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
       <section className="bg-surface-soft py-14 lg:py-20">
         <div className="mx-auto max-w-screen-2xl lg:px-6">
           <SectionHeader
