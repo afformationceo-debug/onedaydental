@@ -9,6 +9,7 @@ import PromoCarousel from "@/components/sections/PromoCarousel";
 import UspSection from "@/components/sections/UspSection";
 import DoctorAuthority from "@/components/sections/DoctorAuthority";
 import BeforeAfter from "@/components/sections/BeforeAfter";
+import GoogleReviews from "@/components/sections/GoogleReviews";
 import CelebrityStrip from "@/components/sections/CelebrityStrip";
 import HomeFaq from "@/components/sections/HomeFaq";
 import CategoryChips from "@/components/CategoryChips";
@@ -131,6 +132,9 @@ export default async function HomePage({
         </div>
         <CelebrityStrip />
       </section>
+
+      {/* 9.5 Google 실제 리뷰 (한국 환자 번체 번역 — 신뢰 보강, 사이트 내 표시) */}
+      <GoogleReviews />
 
       {/* 10. FAQ (의료관광 반론 — 당일·통역·동일가·체류일) */}
       <HomeFaq />
