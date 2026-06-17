@@ -45,7 +45,7 @@ export default async function PromoCarousel() {
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-surface to-transparent lg:w-20" />
 
         <ul
-          className="flex w-max gap-4 px-4 [animation:marquee_60s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none]"
+          className="flex w-max gap-4 px-4 [animation:marquee_90s_linear_infinite] group-hover:[animation-play-state:paused] motion-reduce:[animation:none]"
           aria-label={t("title")}
         >
           {track.map((s, i) => (

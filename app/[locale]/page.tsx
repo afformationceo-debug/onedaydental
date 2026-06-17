@@ -114,7 +114,10 @@ export default async function HomePage({
       {/* 7. Chief-doctor authority (신뢰 보강 — 후순위로) */}
       <DoctorAuthority />
 
-      {/* 9. Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
+      {/* 9. Google 실제 리뷰 (한국 환자 번체 — 신뢰자산이므로 후기 섹션 바로 위로 배치) */}
+      <GoogleReviews />
+
+      {/* 9.5 Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
       <section className="bg-surface-soft py-14 lg:py-20">
         <div className="mx-auto max-w-screen-2xl lg:px-6">
           <SectionHeader
@@ -128,9 +131,6 @@ export default async function HomePage({
         </div>
         <CelebrityStrip />
       </section>
-
-      {/* 9.5 Google 실제 리뷰 (한국 환자 번체 번역 — 신뢰 보강, 사이트 내 표시) */}
-      <GoogleReviews />
 
       {/* 10. FAQ (의료관광 반론 — 당일·통역·동일가·체류일) */}
       <HomeFaq />
