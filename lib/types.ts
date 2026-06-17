@@ -81,6 +81,8 @@ export interface Review {
   rating: number; // 1-5
   treatmentTag: string; // category id or label
   caption?: I18nText;
+  starName?: I18nText; // 연예인 실명 (스타 마퀴용)
+  starRole?: I18nText; // 직업 (배우/가수 등)
 }
 
 export interface Usp {

@@ -15,7 +15,7 @@ import CategoryChips from "@/components/CategoryChips";
 import TreatmentExplorer from "@/components/TreatmentExplorer";
 import { tx } from "@/lib/i18n-text";
 import PriceTable from "@/components/PriceTable";
-import ReviewSlider from "@/components/ReviewSlider";
+import StarMarquee from "@/components/sections/StarMarquee";
 import LineConsult from "@/components/LineConsult";
 import FinalCta from "@/components/sections/FinalCta";
 import { SectionHeader } from "@/components/sections/Section";
@@ -126,10 +126,8 @@ export default async function HomePage({
             subtitle={t("reviews.subtitle")}
           />
         </div>
-        <div className="mt-8">
-          <ReviewSlider reviews={clinic.reviews} />
-        </div>
         <CelebrityStrip />
+        <StarMarquee />
       </section>
 
       {/* 10. FAQ (의료관광 반론 — 당일·통역·동일가·체류일) */}

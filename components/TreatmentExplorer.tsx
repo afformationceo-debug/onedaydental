@@ -85,7 +85,7 @@ export default function TreatmentExplorer({
 
         <div
           role="tabpanel"
-          className="reveal-rise mt-7 grid grid-cols-2 gap-5 xl:grid-cols-3"
+          className="reveal-rise mt-7 grid grid-cols-2 gap-5"
           key={activeCat.id}
         >
           {activeCat.items.map((tr) => (
@@ -150,7 +150,7 @@ export default function TreatmentExplorer({
                 className={cn("collapse-grid", open ? "grid-rows-[1fr]" : "grid-rows-[0fr]")}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-3 bg-surface-soft p-3">
+                  <div className="grid grid-cols-2 gap-3 bg-surface-soft p-3">
                     {c.items.map((tr) => (
                       <DetailCard key={tr.slug} tr={tr} labels={labels} icon={c.icon} compact />
                     ))}
