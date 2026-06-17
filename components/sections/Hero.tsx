@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import CountUp from "../CountUp";
+import LineCta from "../LineCta";
 
 export default async function Hero() {
   const t = await getTranslations("hero");
@@ -59,15 +60,10 @@ export default async function Hero() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
+            {/* 단일 회수 경로 — LINE (브리프 §5). 폼/예약 페이지와 경쟁시키지 않는다. */}
+            <LineCta placement="hero" label={t("ctaPrimary")} />
             <Link
-              href="/reservation"
-              className="group inline-flex items-center gap-2 rounded-lg bg-mint-400 px-6 py-3.5 text-sm font-bold text-brand-950 shadow-[0_8px_30px_-8px] shadow-mint-400/60 transition hover:bg-mint-300 active:scale-95"
-            >
-              {t("ctaPrimary")}
-              <ArrowRight className="size-4 transition group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              href="/treatments"
+              href="/prices"
               className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold text-white backdrop-blur-md transition hover:border-mint-400/50 hover:bg-white/10 active:scale-95"
             >
               {t("ctaSecondary")}

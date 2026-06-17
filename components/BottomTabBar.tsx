@@ -2,32 +2,58 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Home, Smile, CalendarCheck, Star } from "lucide-react";
+import { Home, Smile, Star, Receipt } from "lucide-react";
 import { SiLine } from "react-icons/si";
-import { primaryMessenger } from "@/lib/config";
+import { lineUrl } from "@/lib/config";
 import { trackConsultClick } from "@/lib/track";
 import type { Locale } from "@/lib/types";
 import { cn } from "@/lib/cn";
 
 type Tab = {
-  href: "/" | "/treatments" | "/reservation" | "/reviews";
+  href: "/" | "/treatments" | "/reviews" | "/prices";
   key: string;
   Icon: typeof Home;
-  primary?: boolean;
 };
 
-const TABS: Tab[] = [
+// 단일 회수 경로(브리프 §5): 중앙 primary 탭 = 加 LINE.
+// 폼으로 가던 '預約' 탭을 제거하고, 좌2(首頁·診療) / 중앙(LINE) / 우2(心得·費用) 구성.
+const LEFT: Tab[] = [
   { href: "/", key: "home", Icon: Home },
   { href: "/treatments", key: "treatments", Icon: Smile },
-  { href: "/reservation", key: "reserve", Icon: CalendarCheck, primary: true },
+];
+const RIGHT: Tab[] = [
   { href: "/reviews", key: "reviews", Icon: Star },
+  { href: "/prices", key: "prices", Icon: Receipt },
 ];
 
 export default function BottomTabBar() {
   const t = useTranslations("tabbar");
   const locale = useLocale() as Locale;
   const pathname = usePathname();
-  const line = primaryMessenger(locale);
+
+  const NavTab = ({
+    href,
+    labelKey,
+    Icon,
+  }: {
+    href: Tab["href"];
+    labelKey: string;
+    Icon: typeof Home;
+  }) => {
+    const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+    return (
+      <Link
+        href={href}
+        className={cn(
+          "flex flex-col items-center gap-1 py-2.5 text-[10px] font-semibold transition",
+          active ? "text-brand-600" : "text-ink-400 hover:text-ink-700",
+        )}
+      >
+        <Icon className="size-[19px]" strokeWidth={active ? 2.5 : 2} />
+        <span>{t(labelKey)}</span>
+      </Link>
+    );
+  };
 
   return (
     <nav
@@ -35,56 +61,36 @@ export default function BottomTabBar() {
       className="sticky bottom-0 z-40 mt-auto border-t border-ink-100 bg-white/90 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden"
     >
       <ul className="grid grid-cols-5">
-        {TABS.map(({ href, key, Icon, primary }) => {
-          const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
-          if (primary) {
-            return (
-              <li key={href} className="relative">
-                <Link
-                  href={href}
-                  className="flex flex-col items-center gap-1 pb-1.5 pt-2"
-                  aria-label={t(key)}
-                >
-                  <span className="-mt-5 grid size-12 place-items-center rounded-xl bg-brand-900 text-mint-400 shadow-lg shadow-brand-900/30 ring-4 ring-white transition active:scale-95">
-                    <Icon className="size-5" strokeWidth={2.4} />
-                  </span>
-                  <span className="text-[10px] font-bold text-brand-700">{t(key)}</span>
-                </Link>
-              </li>
-            );
-          }
-          return (
-            <li key={href}>
-              <Link
-                href={href}
-                className={cn(
-                  "flex flex-col items-center gap-1 py-2.5 text-[10px] font-semibold transition",
-                  active ? "text-brand-600" : "text-ink-400 hover:text-ink-700",
-                )}
-              >
-                <Icon className="size-[19px]" strokeWidth={active ? 2.5 : 2} />
-                <span>{t(key)}</span>
-              </Link>
-            </li>
-          );
-        })}
+        {LEFT.map((tab) => (
+          <li key={tab.href}>
+            <NavTab href={tab.href} labelKey={tab.key} Icon={tab.Icon} />
+          </li>
+        ))}
 
-        {/* LINE consult — TW primary conversion channel */}
-        <li>
+        {/* 중앙 primary — 加 LINE (TW 1순위 전환 채널). sticky 상시 노출. */}
+        <li className="relative">
           <a
-            href={line.href}
+            href={lineUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>
-              trackConsultClick({ channel: "line", locale, placement: "tabbar" })
+              trackConsultClick({ channel: "line", locale, placement: "tabbar_center" })
             }
-            aria-label="LINE"
-            className="flex flex-col items-center gap-1 py-2.5 text-[10px] font-bold text-[#06C755] transition active:scale-95"
+            aria-label={t("consult")}
+            className="flex flex-col items-center gap-1 pb-1.5 pt-2"
           >
-            <SiLine className="size-[19px]" />
-            <span>{t("consult")}</span>
+            <span className="-mt-5 grid size-12 place-items-center rounded-xl bg-[#06C755] text-white shadow-lg shadow-[#06C755]/30 ring-4 ring-white transition active:scale-95">
+              <SiLine className="size-6" />
+            </span>
+            <span className="text-[10px] font-bold text-[#06A24A]">{t("consult")}</span>
           </a>
         </li>
+
+        {RIGHT.map((tab) => (
+          <li key={tab.href}>
+            <NavTab href={tab.href} labelKey={tab.key} Icon={tab.Icon} />
+          </li>
+        ))}
       </ul>
     </nav>
   );

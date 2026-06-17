@@ -43,6 +43,12 @@ export function getUtm(): Record<string, string> {
   }
 }
 
+/** Generic GA4 event helper — UTM 자동 부착. 노출/스크롤 등 비클릭 이벤트에 사용. */
+export function trackEvent(name: string, params: Record<string, unknown> = {}) {
+  if (typeof window === "undefined") return;
+  window.gtag?.("event", name, { ...params, ...getUtm() });
+}
+
 /** Fire a consultation-click event to GA4 + Meta Pixel, tagged with channel/treatment/UTM. */
 export function trackConsultClick(opts: {
   channel: string;
@@ -54,6 +60,8 @@ export function trackConsultClick(opts: {
   const utm = getUtm();
   const payload = { ...opts, ...utm };
   window.gtag?.("event", "consult_click", payload);
+  // 브리프 §7 — 모든 라인 버튼은 line_click 으로도 발화(라인 도달률 자동 집계).
+  if (opts.channel === "line") window.gtag?.("event", "line_click", payload);
   window.fbq?.("track", "Contact", payload);
   // 자체 인입 적재 (구글 시트). keepalive로 LINE 이동 후에도 전송 보장. 실패는 무시.
   try {

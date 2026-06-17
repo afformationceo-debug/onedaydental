@@ -24,7 +24,7 @@ const nextConfig: NextConfig = {
       "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com",
       "font-src 'self' data: https://cdn.jsdelivr.net https://fonts.gstatic.com",
       "img-src 'self' data: blob: https:",
-      "frame-src https://www.instagram.com https://www.google.com https://maps.google.com",
+      "frame-src 'self' https://www.instagram.com https://www.google.com https://maps.google.com",
       "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.facebook.com",
       "object-src 'none'",
       "base-uri 'self'",

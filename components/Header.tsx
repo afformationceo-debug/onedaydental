@@ -60,10 +60,11 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
     { href: "/", key: "home" },
     { href: "/about", key: "about" },
   ] as const;
+  // 단일 회수 경로(브리프 §5): 드로어 CTA를 폼(/reservation)으로 분기시키지 않는다.
+  // 라인 상담은 드로어 하단 MessengerButtons + 데스크탑 헤더 라인 버튼으로 통일.
   const tailLinks = [
     { href: "/prices", key: "prices" },
     { href: "/reviews", key: "reviews" },
-    { href: "/reservation", key: "reservation" },
   ] as const;
 
   return (
@@ -213,22 +214,19 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
 
               {tailLinks.map((item) => {
                 const active = pathname.startsWith(item.href);
-                const isCta = item.key === "reservation";
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       className={cn(
                         "flex items-center justify-between rounded-xl px-3 py-3 text-[15px] font-semibold transition",
-                        isCta
-                          ? "mt-1 justify-center bg-brand-900 text-mint-400 shadow-md shadow-brand-900/30"
-                          : active
-                            ? "bg-brand-50 text-brand-700"
-                            : "text-ink-800 hover:bg-surface-soft",
+                        active
+                          ? "bg-brand-50 text-brand-700"
+                          : "text-ink-800 hover:bg-surface-soft",
                       )}
                     >
                       {t(item.key)}
-                      {!isCta && active && <span className="size-1.5 rounded-full bg-brand-500" />}
+                      {active && <span className="size-1.5 rounded-full bg-brand-500" />}
                     </Link>
                   </li>
                 );

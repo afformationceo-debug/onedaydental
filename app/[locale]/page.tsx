@@ -5,6 +5,7 @@ import type { Locale } from "@/lib/types";
 import { ArrowRight } from "lucide-react";
 import Hero from "@/components/sections/Hero";
 import TrustBar from "@/components/sections/TrustBar";
+import PromoCarousel from "@/components/sections/PromoCarousel";
 import UspSection from "@/components/sections/UspSection";
 import DoctorAuthority from "@/components/sections/DoctorAuthority";
 import BeforeAfter from "@/components/sections/BeforeAfter";
@@ -18,7 +19,8 @@ import ReviewSlider from "@/components/ReviewSlider";
 import LineConsult from "@/components/LineConsult";
 import FinalCta from "@/components/sections/FinalCta";
 import { SectionHeader } from "@/components/sections/Section";
-import Reveal from "@/components/Reveal";
+import ScrollDepth from "@/components/ScrollDepth";
+import ViewTracker from "@/components/ViewTracker";
 
 export default async function HomePage({
   params,
@@ -35,22 +37,41 @@ export default async function HomePage({
 
   return (
     <>
-      {/* 1. Hero — 真正的一日完成 + 同價 + count-up + CTA */}
+      {/* 1. Hero — 韓星同款 牙齒美學(陶瓷貼片・牙齒美白) + 단일 LINE CTA */}
       <Hero />
+
+      {/* scroll_50 자동 발화 (브리프 §7 — 0초 이탈 대비 관여 측정) */}
+      <ScrollDepth />
 
       {/* 2. Trust badge strip (放心 anchor) */}
       <TrustBar />
+
+      {/* 2.5 "이게 당신이 찾던 시술" — 미백/라미 비주얼 캐러셀 (브리프 §4-2, 광고 정렬) */}
+      <PromoCarousel />
 
       {/* 3. Category quick-nav */}
       <section className="pt-8">
         <CategoryChips />
       </section>
 
-      {/* 4. Why ONEDAY (USPs — 당일동선·중문통역 등) */}
+      {/* 4. Why ONEDAY — "이게 당신이 찾던 것"(당일동선·중문통역·투명가) */}
       <UspSection />
 
-      {/* 5. Chief-doctor authority (김진환) */}
-      <DoctorAuthority />
+      {/* 5. Pricing — 미백·라미 전면(美學 그룹 최상단). 저관여 결심엔 투명가가 핵심 후킹. */}
+      <ViewTracker event="price_view">
+        <section id="prices" className="bg-surface-soft py-14 lg:py-20">
+          <div className="mx-auto max-w-screen-2xl lg:px-6">
+            <SectionHeader
+              kicker={t("prices.kicker")}
+              title={t("prices.title")}
+              subtitle={t("prices.subtitle")}
+            />
+          </div>
+          <div className="mt-8">
+            <PriceTable />
+          </div>
+        </section>
+      </ViewTracker>
 
       {/* 6. Treatments — category TABS (desktop) / ACCORDION (mobile) */}
       <section className="py-14 lg:py-20">
@@ -90,24 +111,13 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 7. Pricing (수가표 — 同價 강조) */}
-      <section className="bg-surface-soft py-14 lg:py-20">
-        <div className="mx-auto max-w-screen-2xl lg:px-6">
-          <SectionHeader
-            kicker={t("prices.kicker")}
-            title={t("prices.title")}
-            subtitle={t("prices.subtitle")}
-          />
-        </div>
-        <div className="mt-8">
-          <PriceTable />
-        </div>
-      </section>
+      {/* 7. Chief-doctor authority (신뢰 보강 — 후순위로) */}
+      <DoctorAuthority />
 
-      {/* 8. Before & After (placeholder — imagery pending) */}
+      {/* 8. Before & After (라미/미백 위주 — imagery pending) */}
       <BeforeAfter />
 
-      {/* 9. Reviews (번체 · 명인/실제 환자 — 별점 미사용) */}
+      {/* 9. Reviews + 연예인 동행 (韓星同款 포지셔닝 강화) */}
       <section className="bg-surface-soft py-14 lg:py-20">
         <div className="mx-auto max-w-screen-2xl lg:px-6">
           <SectionHeader
@@ -119,14 +129,13 @@ export default async function HomePage({
         <div className="mt-8">
           <ReviewSlider reviews={clinic.reviews} />
         </div>
-        {/* 함께한 분들 — 병원 제공 홍보 사진 (임성훈) */}
         <CelebrityStrip />
       </section>
 
       {/* 10. FAQ (의료관광 반론 — 당일·통역·동일가·체류일) */}
       <HomeFaq />
 
-      {/* 11. Reservation funnel */}
+      {/* 11. LINE 상담 (단일 회수 경로) */}
       <section id="reservation" className="py-14 lg:py-20">
         <div className="mx-auto max-w-screen-2xl lg:px-6">
           <SectionHeader
@@ -140,8 +149,10 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* 12. Final LINE CTA */}
-      <FinalCta />
+      {/* 12. Final LINE CTA (cta_view 노출 추적) */}
+      <ViewTracker event="cta_view">
+        <FinalCta />
+      </ViewTracker>
     </>
   );
 }

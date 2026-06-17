@@ -319,6 +319,22 @@
   ],
   "categories": [
     {
+      "id": "cosmetic",
+      "name": {
+        "ko": "치아미백·라미네이트",
+        "zh-TW": "牙齒美白・陶瓷貼片"
+      },
+      "icon": "Sparkles"
+    },
+    {
+      "id": "ortho",
+      "name": {
+        "ko": "치아교정",
+        "zh-TW": "齒列矯正"
+      },
+      "icon": "AlignHorizontalDistributeCenter"
+    },
+    {
       "id": "implant",
       "name": {
         "ko": "원데이 임플란트",
@@ -333,22 +349,6 @@
         "zh-TW": "T-Scan 咬合植牙"
       },
       "icon": "Activity"
-    },
-    {
-      "id": "ortho",
-      "name": {
-        "ko": "치아교정",
-        "zh-TW": "齒列矯正"
-      },
-      "icon": "AlignHorizontalDistributeCenter"
-    },
-    {
-      "id": "cosmetic",
-      "name": {
-        "ko": "치아성형·심미",
-        "zh-TW": "牙齒美學成形"
-      },
-      "icon": "Sparkles"
     },
     {
       "id": "general",
@@ -632,7 +632,7 @@
         "ko": "회복기간 거의 없음 — 시술 당일 일상생활 가능",
         "zh-TW": "幾乎無恢復期 — 治療當日可正常生活"
       },
-      "image": "",
+      "image": "/promo/laminate-1.webp",
       "highlights": [
         {
           "ko": "미세 삭제로 자연치아 보존",
@@ -712,7 +712,7 @@
         "ko": "별도 회복기간 없음",
         "zh-TW": "無需恢復期"
       },
-      "image": "",
+      "image": "/promo/whitening-1.webp",
       "highlights": [
         {
           "ko": "식약처 허가 미백제(ZOOM) 사용",
@@ -852,8 +852,7 @@
         "ko": "1개당",
         "zh-TW": "每顆"
       },
-      "priceKRW": 40,
-      "originalKRW": 70
+      "priceKRW": 40
     },
     {
       "id": "p-whitening-pro",

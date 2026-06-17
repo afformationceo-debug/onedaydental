@@ -90,6 +90,13 @@ export default async function PriceTable() {
     groups.get(key)!.push(p);
   }
 
+  // 브리프 §3 — 광고가 데려온 시술(미백·라미=美學/심미)을 가격표 최상단으로.
+  // 임플란트 그룹은 후순위로 내린다(메뉴엔 유지, 후킹에선 제외).
+  const isAesthetic = (cat: string) => /美學|美白|貼片|심미|미백|라미네이트/.test(cat);
+  const orderedGroups = [...groups.entries()].sort(
+    ([a], [b]) => Number(isAesthetic(b)) - Number(isAesthetic(a)),
+  );
+
   return (
     <div className="mx-auto max-w-screen-2xl px-5 lg:px-10">
       <div className="mb-5 flex items-center gap-2.5 rounded-lg border border-mint-400/40 bg-mint-400/8 px-4 py-3">
@@ -98,7 +105,7 @@ export default async function PriceTable() {
       </div>
 
       <div className="overflow-hidden rounded-xl border border-ink-100">
-        {[...groups.entries()].map(([cat, items]) => (
+        {orderedGroups.map(([cat, items]) => (
           <div key={cat}>
             <div className="flex items-center gap-2 bg-brand-900 px-4 py-3 font-display text-[13px] font-bold tracking-wide text-white">
               <span className="size-1.5 rounded-full bg-mint-400" />
