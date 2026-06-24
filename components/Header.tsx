@@ -52,6 +52,7 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
     { href: "/", key: "home" },
     { href: "/treatments", key: "treatments" },
     { href: "/prices", key: "prices" },
+    { href: "/blog", key: "blog" },
     { href: "/reviews", key: "reviews" },
     { href: "/about", key: "about" },
   ] as const;
@@ -64,6 +65,7 @@ export default function Header({ treatmentCats }: { treatmentCats: TreatmentCat[
   // 라인 상담은 드로어 하단 MessengerButtons + 데스크탑 헤더 라인 버튼으로 통일.
   const tailLinks = [
     { href: "/prices", key: "prices" },
+    { href: "/blog", key: "blog" },
     { href: "/reviews", key: "reviews" },
   ] as const;
 

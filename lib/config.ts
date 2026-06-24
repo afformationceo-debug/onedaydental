@@ -1,7 +1,10 @@
 import type { Locale } from "./types";
 
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://tw.onedaydent.com";
+// 끝 슬래시 정규화 — env 에 trailing slash 가 들어와도 canonical/sitemap/OG/JSON-LD 의
+// `${SITE_URL}${path}` 가 `//blog` 처럼 깨지지 않도록 단일 지점에서 방어한다.
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://tw.onedaydent.com"
+).replace(/\/$/, "");
 
 /** Messenger deep-links. locale → preferred channel. */
 export interface Messenger {
