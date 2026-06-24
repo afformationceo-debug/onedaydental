@@ -18,6 +18,7 @@ import PriceTable from "@/components/PriceTable";
 import StarMarquee from "@/components/sections/StarMarquee";
 import LineConsult from "@/components/LineConsult";
 import FinalCta from "@/components/sections/FinalCta";
+import ChannelHub from "@/components/blog/ChannelHub";
 import { SectionHeader } from "@/components/sections/Section";
 import ScrollDepth from "@/components/ScrollDepth";
 import ViewTracker from "@/components/ViewTracker";
@@ -144,6 +145,20 @@ export default async function HomePage({
         </div>
         <div className="mt-8">
           <LineConsult placement="home_reservation" />
+        </div>
+      </section>
+
+      {/* 11.5 전 채널 백링크 모음 (라인·인스타·리틀리·구글맵 1~3관 상호강화) */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-screen-2xl px-5 lg:px-6">
+          <ChannelHub
+            title={locale === "ko" ? "원데이치과와 연결" : "與 韓國oneday牙科 連結"}
+            subtitle={
+              locale === "ko"
+                ? "LINE 예약・인스타그램・리틀리・지도 안내를 한 번에"
+                : "LINE 預約・Instagram・Littly・1～3館地圖導航，一次擁有"
+            }
+          />
         </div>
       </section>
 
