@@ -13,7 +13,7 @@ import {
   HelpCircle,
   ArrowRight,
 } from "lucide-react";
-import { getPostBySlug, getAllBlogParams, getAllPosts, CATEGORY_LABEL } from "@/lib/blog";
+import { getPostBySlug, getAllBlogParams, getAllPosts, CATEGORY_LABEL, isLive } from "@/lib/blog";
 import { getClinic, getTreatmentBySlug } from "@/lib/clinic";
 import { tx } from "@/lib/i18n-text";
 import { buildMetadata } from "@/lib/seo";
@@ -24,6 +24,11 @@ import { mdxComponents } from "@/components/blog/mdx";
 import ChannelHub from "@/components/blog/ChannelHub";
 import BlogJsonLd from "@/components/blog/BlogJsonLd";
 import BlogCard from "@/components/blog/BlogCard";
+
+// 예약 발행: ISR 로 매시간 재검증 + dynamicParams 로 공개일이 된 글을
+// 온디맨드 렌더(재배포 불필요). 미공개 글은 isLive 게이트로 404.
+export const revalidate = 3600;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllBlogParams(routing.locales);
@@ -36,7 +41,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const post = getPostBySlug(locale as Locale, slug);
-  if (!post) return {};
+  if (!post || !isLive(post.publishedAt)) return {};
   const meta = buildMetadata({
     locale: locale as Locale,
     path: `/blog/${slug}`,

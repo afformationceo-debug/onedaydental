@@ -63,6 +63,22 @@ function estimateReadingMinutes(body: string): number {
   return Math.max(1, Math.round(chars / 300));
 }
 
+/**
+ * 예약 발행 게이트 — 서버 기준 '오늘(KST, UTC+9)' YYYY-MM-DD.
+ * Vercel 서버는 UTC로 돌기 때문에 한국 자정 기준으로 하루 하나씩
+ * 공개하려면 UTC+9 로 보정한 날짜와 publishedAt(YYYY-MM-DD)을 문자열 비교한다.
+ * (YYYY-MM-DD 사전순 = 날짜순이라 안전.)
+ */
+function todayKST(): string {
+  const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+  return kst.toISOString().slice(0, 10);
+}
+
+/** publishedAt 이 오늘(KST) 이하이면 공개. 미래 날짜 글은 자동 숨김(예약). */
+export function isLive(publishedAt: string): boolean {
+  return publishedAt <= todayKST();
+}
+
 function localeDir(locale: Locale): string {
   return path.join(CONTENT_ROOT, locale);
 }
@@ -106,7 +122,7 @@ export function getPostBySlug(locale: Locale, slug: string): BlogPost | null {
 export function getAllPosts(locale: Locale): BlogPostMeta[] {
   return getPostSlugs(locale)
     .map((slug) => getPostBySlug(locale, slug))
-    .filter((p): p is BlogPost => p !== null && !p.draft)
+    .filter((p): p is BlogPost => p !== null && !p.draft && isLive(p.publishedAt))
     .map(({ content: _content, ...meta }) => meta)
     .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 }
@@ -115,8 +131,15 @@ export function getAllPosts(locale: Locale): BlogPostMeta[] {
 export function getAllBlogParams(
   locales: readonly Locale[],
 ): { locale: Locale; slug: string }[] {
+  // 예약 발행: 아직 공개일이 안 된 글은 SSG 파라미터에서 제외.
+  // dynamicParams=true 이므로, 공개일이 되면 온디맨드로 렌더된다(재배포 불필요).
   return locales.flatMap((locale) =>
-    getPostSlugs(locale).map((slug) => ({ locale, slug })),
+    getPostSlugs(locale)
+      .map((slug) => getPostBySlug(locale, slug))
+      .filter(
+        (p): p is BlogPost => p !== null && !p.draft && isLive(p.publishedAt),
+      )
+      .map((p) => ({ locale, slug: p.slug })),
   );
 }
 

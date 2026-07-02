@@ -1,4 +1,4 @@
-export const revalidate = 86400;
+export const revalidate = 3600;
 import type { MetadataRoute } from "next";
 import { getClinic } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog";

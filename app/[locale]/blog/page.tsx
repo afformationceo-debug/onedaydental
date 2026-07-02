@@ -9,6 +9,9 @@ import { routing } from "@/i18n/routing";
 import type { Locale } from "@/lib/types";
 import { FileText } from "lucide-react";
 
+// 예약 발행: ISR 로 매시간 재생성 → 공개일이 된 글이 목록에 자동 등장(재배포 불필요).
+export const revalidate = 3600;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
