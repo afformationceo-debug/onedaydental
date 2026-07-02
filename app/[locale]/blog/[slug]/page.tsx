@@ -92,7 +92,7 @@ export default async function BlogPostPage({
   setRequestLocale(localeParam);
   const locale = localeParam as Locale;
   const post = getPostBySlug(locale, slug);
-  if (!post) notFound();
+  if (!post || !isLive(post.publishedAt)) notFound();
   const ui = UI[locale];
 
   const canonical = `${SITE_URL}${locale === routing.defaultLocale ? "" : `/${locale}`}/blog/${slug}`;
